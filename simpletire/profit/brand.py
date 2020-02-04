@@ -11,7 +11,7 @@ import numpy as np
 # Filter the Data to Necessary Columns, Remove Extraneous Data
 
 # FIXME if you are not Pierce then this path will need to be changed (lazy i will fix later)
-jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/OrderItemMargin-01-26.csv')
+jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin-01-26.csv')
 jan26 = jan26_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
 jan26 = jan26.loc[~(jan26['Source'] == "BulkOrders")]  # Remove bulk orders
 
@@ -36,6 +36,16 @@ brand_group_bottom = brand_group.tail(int(len(brand_group) * (n/100)))
 print("\nBRAND AGGREGATE\n")
 print("Top 10% of Brands by Profit\n")
 print(brand_group_top)
+
+brand_plot = pd.DataFrame()
+brand_plot['Profit'] = brand_group_top.loc[:, ('Net_Profit', 'sum')]
+brand_plot['Brand'] = brand_group_top.loc[:, ['Brand']]
+
+brand_group_top.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/brandprofit.csv', encoding='utf-8', index=True)
+#print(brand_plot)
+#brand_plot.plot('Brand', 'Profit', figsize=(15, 6))
+#plt.show()
 # print("Bottom 10% of Brands by Profit\n")
 # print(brand_group_bottom)
+
 

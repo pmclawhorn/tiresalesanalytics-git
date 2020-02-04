@@ -9,18 +9,18 @@ import numpy as np
 pd.set_option("display.max_columns", 999)
 pd.set_option("display.max_rows", 999)
 
-dec6_raw = pd.read_csv("OrderItemMargin.csv")
-#print(dec6_raw.head())
+jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin-01-26.csv')
+jan26 = jan26_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
+jan26 = jan26.loc[~(jan26['Source'] == "BulkOrders")]  # Remove bulk orders
 
-dec6_condensed = dec6_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
-dec6_condensed['Net_Profit'] = dec6_condensed['Ext_Sales'] - dec6_condensed['Ext_Cost']
-#print(dec6_condensed.head())
+# Compute Columns for profit, include shipping cost
+jan26['Net_Profit'] = ((jan26['Ext_Sales'] - jan26['Ext_Cost']) - jan26['Admin_Ship_Est'])
 
 n = 10
 
 # Hierarchy: Brand -> Subtype -> Line -> SKU
 # LINE ANALYSIS
-line = dec6_condensed.loc[:, ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Net_Profit', 'Line']]
+line = jan26.loc[:, ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Net_Profit', 'Line']]
 line = line.sort_values(['Ext_Sales'], ascending=[False])
 # Aggregate by Brand
 line_group = line.groupby('Line').agg({'Net_Profit': ['sum','mean', 'min', 'max']}).reset_index()
@@ -33,5 +33,12 @@ line_group_bottom = line_group.tail(int(len(line_group) * (n/100)))
 print("\nLINE AGGREGATE\n")
 print("Top 10% of Lines by Total Profit\n")
 print(line_group_top)
-print("Bottom 10% of Lines by Total Profit\n")
-print(line_group_bottom)
+#print("Bottom 10% of Lines by Total Profit\n")
+#print(line_group_bottom)
+
+# Sort by net profit then just grab the head(50) or whatever
+
+#line_group_top.plot(figsize=(15, 6))
+#plt.show()
+
+line_group_top.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/lineprofit.csv', encoding='utf-8', index=True)

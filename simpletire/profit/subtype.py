@@ -30,3 +30,8 @@ subtype_group = subtype_group.sort_values([('Net_Profit', 'sum')], ascending=Fal
 
 print("\nSUBTYPE AGGREGATE\n")
 print(subtype_group)
+
+subtype_group.plot(figsize=(15, 6))
+plt.show()
+
+subtype_group.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypeprofit.csv', encoding='utf-8', index=True)
