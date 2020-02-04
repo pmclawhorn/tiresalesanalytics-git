@@ -1,3 +1,4 @@
+# Script to compute ARIMA (Autoregressive Integrated Moving Average) forecast based on a brand aggregate
 import warnings
 import itertools
 import numpy as np
@@ -15,9 +16,7 @@ import seaborn as sns; sns.set()
 # Hierarchy is Brand -> Subtype -> Line
 
 # Filter the Data to Necessary Columns, Remove Extraneous Data
-
-# FIXME if you are not Pierce then this path will need to be changed (lazy i will fix later)
-jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/OrderItemMargin-01-26.csv')
+jan26_raw = pd.read_csv("OrderItemMargin.csv")
 jan26 = jan26_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
 jan26 = jan26.loc[~(jan26['Source'] == "BulkOrders")]  # Remove bulk orders
 # jan26 = jan26.loc[jan26['Sub_Type'].isin(['ATV/UTV', 'Commercial', 'Farm', 'Golf', 'Lawn & Garden', 'Industrial',  'Passenger', 'Light Truck', 'Trailer'])]
@@ -33,19 +32,27 @@ subtype_demand = subtype_demand.groupby('Sub_Type').resample('W-Mon', on='Create
 # Fill data where a subtype may have been ordered 0 times in a week
 subtype_result = subtype_demand.groupby(['Created', 'Sub_Type'])['Quantity'].sum().reset_index().pivot(index='Created', columns='Sub_Type', values='Quantity').resample('W-Mon', label='left', closed='left').asfreq().fillna(0)
 
-# This represents Sales by Week for each subtype
-# Plot Subtype
-print(subtype_result)
-subtype_result.plot(figsize=(15, 6))
+# DECOMPOSITION FORECASTING
+
+# We can use time series decomposition to decompose our time series into trend, seasonality and noise
+# For additive this requires 104 observations... not 10
+# For multiplicative: ValueError: Multiplicative seasonality is not appropriate for zero and negative values
+
+subtype_series = subtype_result.reset_index()
+subtype_series = subtype_series.loc[:, ['Passenger']]
+print(subtype_series)
+
+rcParams['figure.figsize'] = 18, 8
+decomposition = sm.tsa.seasonal_decompose(subtype_series, model='additive')
+fig = decomposition.plot()
+plt.show()
+
+
+# SEABORN HEATMAP
+
+#subtype_result.to_csv("demand_bysubtype.csv", encoding='utf-8', index=True)
+
+#sns.heatmap(subheat, annot=True)
 #plt.show()
 
-# Plot Variance
-print("VARIANCE:\n")
-print(subtype_result.var())
-#subvar = subtype_result.var()
-#subvar.plot(figsize=(15, 6))
-#plt.show()
 
-# Plot StdDev
-print("STANDARD DEVIATION:\n")
-print(np.std(subtype_result))
