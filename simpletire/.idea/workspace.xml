@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/demand/brand.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forecast/arima.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profit/brand.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profit/line.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profit/subtype.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OrderItemMargin-01-26.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demand/brand.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/brand.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demand/subtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/subtype.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
