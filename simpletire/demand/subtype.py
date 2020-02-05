@@ -37,7 +37,7 @@ subtype_result = subtype_demand.groupby(['Created', 'Sub_Type'])['Quantity'].sum
 # Plot Subtype
 print(subtype_result)
 subtype_result.plot(figsize=(15, 6))
-#plt.show()
+plt.show()
 
 # Plot Variance
 print("VARIANCE:\n")
@@ -49,3 +49,7 @@ print(subtype_result.var())
 # Plot StdDev
 print("STANDARD DEVIATION:\n")
 print(np.std(subtype_result))
+
+subtype_result.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemand.csv', encoding='utf-8', index=True)
+subtype_result.var().to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemandvar.csv', encoding='utf-8', index=True)
+np.std(subtype_result).to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemandstddev.csv', encoding='utf-8', index=True)
