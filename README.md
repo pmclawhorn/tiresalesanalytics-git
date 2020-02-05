@@ -1,2 +1,2 @@
 # simpletire-git
-Data analysis done as part of OM597 at The University of Alabama
+Data analysis conducted for a tire company as part of OM-597 Advanced Analysis in Supply Chain at The University of Alabama.
