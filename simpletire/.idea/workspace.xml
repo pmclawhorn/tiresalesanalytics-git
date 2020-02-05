@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/demand/total_quantity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twoway/amazon_hankook_demand.py" beforeDir="false" afterPath="$PROJECT_DIR$/twoway/amazon_hankook_profit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twoway/hankook_amazon.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +30,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="Python.amazon_hankook_profit">
+  <component name="RunManager" selected="Python.total_quantity">
     <configuration name="amazon_hankook_profit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -116,7 +115,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="subtype" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="total_quantity" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -128,7 +127,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/subtype.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/total_quantity.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,11 +138,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.total_quantity" />
         <item itemvalue="Python.amazon_hankook_profit" />
         <item itemvalue="Python.line (1)" />
         <item itemvalue="Python.brand" />
         <item itemvalue="Python.scratch" />
-        <item itemvalue="Python.subtype" />
       </list>
     </recent_temporary>
   </component>
@@ -161,25 +160,25 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1675" height="578" key="GridCell.Tab.0.bottom" timestamp="1580880931107">
-      <screen x="1440" y="-297" width="2560" height="1417" />
+    <state width="1351" height="326" key="GridCell.Tab.0.bottom" timestamp="1580934416780">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1114" height="216" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1580851860189" />
-    <state width="1675" height="578" key="GridCell.Tab.0.center" timestamp="1580880931106">
-      <screen x="1440" y="-297" width="2560" height="1417" />
+    <state width="1351" height="326" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1580934416780" />
+    <state width="1351" height="326" key="GridCell.Tab.0.center" timestamp="1580934416780">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.center/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931106" />
-    <state width="1114" height="216" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1580851860188" />
-    <state width="1675" height="578" key="GridCell.Tab.0.left" timestamp="1580880931105">
-      <screen x="1440" y="-297" width="2560" height="1417" />
+    <state width="1351" height="326" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1580934416780" />
+    <state width="1351" height="326" key="GridCell.Tab.0.left" timestamp="1580934416779">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.left/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931105" />
-    <state width="1114" height="216" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1580851860188" />
-    <state width="1675" height="578" key="GridCell.Tab.0.right" timestamp="1580880931107">
-      <screen x="1440" y="-297" width="2560" height="1417" />
+    <state width="1351" height="326" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1580934416779" />
+    <state width="1351" height="326" key="GridCell.Tab.0.right" timestamp="1580934416780">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.right/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1114" height="216" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1580851860189" />
+    <state width="1351" height="326" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1580934416780" />
   </component>
 </project>
