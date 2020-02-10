@@ -17,6 +17,7 @@ jan26 = jan26.loc[~(jan26['Source'] == "BulkOrders")]  # Remove bulk orders
 
 # Compute Column for profit, include shipping cost
 jan26['Net_Profit'] = ((jan26['Ext_Sales'] - jan26['Ext_Cost']) - jan26['Admin_Ship_Est'])
+jan26['Line'] = jan26['Brand'] + " " + jan26['Line']
 
 
 # LINE ANALYSIS
