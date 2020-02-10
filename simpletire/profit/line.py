@@ -41,7 +41,7 @@ print(line_group_bottom)
 
 # Sort by net profit then just grab the head(50) or whatever
 
-#line_group_top.plot(figsize=(15, 6))
-#plt.show()
+line_group_top.plot(figsize=(15, 6))
+plt.show()
 
 line_group_top.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/lineprofit.csv', encoding='utf-8', index=True)
