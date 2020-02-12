@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demand/brand.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/brand.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profit/line.py" beforeDir="false" afterPath="$PROJECT_DIR$/profit/line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/branddemand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/branddemand.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/branddemandstddev.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/branddemandstddev.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/branddemandvar.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/branddemandvar.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +35,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
-  <component name="RunManager" selected="Python.line">
+  <component name="RunManager" selected="Python.brand">
     <configuration name="amazon_hankook_profit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -74,7 +78,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="line (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="brand" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -86,7 +90,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/line.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/brand.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.brand" />
         <item itemvalue="Python.line" />
         <item itemvalue="Python.brand (1)" />
         <item itemvalue="Python.total_quantity" />
         <item itemvalue="Python.amazon_hankook_profit" />
-        <item itemvalue="Python.line (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -161,29 +165,53 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1351" height="253" key="GridCell.Tab.0.bottom" timestamp="1581368911980">
+    <state x="354" y="127" key="#Notifications" timestamp="1581541140861">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="354" y="127" key="#Notifications/0.23.1440.877@0.23.1440.877" timestamp="1581541140861" />
+    <state width="1351" height="315" key="GridCell.Tab.0.bottom" timestamp="1581543672968">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1351" height="253" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1581368911980" />
-    <state width="1351" height="253" key="GridCell.Tab.0.center" timestamp="1581368911979">
+    <state width="1351" height="315" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1581543672968" />
+    <state width="1351" height="315" key="GridCell.Tab.0.center" timestamp="1581543672967">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.center/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931106" />
-    <state width="1351" height="253" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1581368911979" />
-    <state width="1351" height="253" key="GridCell.Tab.0.left" timestamp="1581368911978">
+    <state width="1351" height="315" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1581543672967" />
+    <state width="1351" height="315" key="GridCell.Tab.0.left" timestamp="1581543672966">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.left/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931105" />
-    <state width="1351" height="253" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1581368911978" />
-    <state width="1351" height="253" key="GridCell.Tab.0.right" timestamp="1581368911980">
+    <state width="1351" height="315" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1581543672966" />
+    <state width="1351" height="315" key="GridCell.Tab.0.right" timestamp="1581543672967">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.right/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1351" height="253" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1581368911980" />
+    <state width="1351" height="315" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1581543672967" />
+    <state width="1351" height="296" key="GridCell.Tab.1.bottom" timestamp="1581542024704">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1351" height="296" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1581542024704" />
+    <state width="1351" height="296" key="GridCell.Tab.1.center" timestamp="1581542024703">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1351" height="296" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1581542024703" />
+    <state width="1351" height="296" key="GridCell.Tab.1.left" timestamp="1581542024703">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1351" height="296" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1581542024703" />
+    <state width="1351" height="296" key="GridCell.Tab.1.right" timestamp="1581542024704">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1351" height="296" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1581542024704" />
     <state x="237" y="100" key="SettingsEditor" timestamp="1580939544651">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="237" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1580939544651" />
+    <state x="431" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1581540651127">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="431" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1581540651127" />
   </component>
 </project>
