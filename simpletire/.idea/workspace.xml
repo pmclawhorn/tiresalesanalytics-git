@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/forecast/trailer_forecast.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demand/brand.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/brand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profit/line.py" beforeDir="false" afterPath="$PROJECT_DIR$/profit/line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/branddemand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/branddemand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/branddemandstddev.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/branddemandstddev.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/branddemandvar.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/branddemandvar.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demand/line.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demand/subtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/subtype.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/linedemand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/linedemand.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/linedemandstddev.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/linedemandstddev.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/linedemandvar.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/linedemandvar.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/subtypedemand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/subtypedemand.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/subtypedemandstddev.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/subtypedemandstddev.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/subtypedemandvar.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/subtypedemandvar.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,49 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
-  <component name="RunManager" selected="Python.brand">
-    <configuration name="amazon_hankook_profit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="simpletire" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/twoway" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/twoway/amazon_hankook_profit.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="brand (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="simpletire" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/profit" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/profit/brand.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.trailer_forecast">
     <configuration name="brand" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,6 +53,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/brand.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="line (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="simpletire" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/demand" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/line.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -120,7 +103,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="total_quantity" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="subtype" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -132,7 +115,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/total_quantity.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demand/subtype.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="trailer_forecast" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="simpletire" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/trailer_forecast.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -143,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.trailer_forecast" />
+        <item itemvalue="Python.subtype" />
+        <item itemvalue="Python.line (1)" />
         <item itemvalue="Python.brand" />
         <item itemvalue="Python.line" />
-        <item itemvalue="Python.brand (1)" />
-        <item itemvalue="Python.total_quantity" />
-        <item itemvalue="Python.amazon_hankook_profit" />
       </list>
     </recent_temporary>
   </component>
@@ -169,26 +173,26 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="354" y="127" key="#Notifications/0.23.1440.877@0.23.1440.877" timestamp="1581541140861" />
-    <state width="1351" height="315" key="GridCell.Tab.0.bottom" timestamp="1581543672968">
+    <state width="1351" height="228" key="GridCell.Tab.0.bottom" timestamp="1581547140676">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1351" height="315" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1581543672968" />
-    <state width="1351" height="315" key="GridCell.Tab.0.center" timestamp="1581543672967">
+    <state width="1351" height="228" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1581547140676" />
+    <state width="1351" height="228" key="GridCell.Tab.0.center" timestamp="1581547140675">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.center/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931106" />
-    <state width="1351" height="315" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1581543672967" />
-    <state width="1351" height="315" key="GridCell.Tab.0.left" timestamp="1581543672966">
+    <state width="1351" height="228" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1581547140675" />
+    <state width="1351" height="228" key="GridCell.Tab.0.left" timestamp="1581547140674">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.left/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931105" />
-    <state width="1351" height="315" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1581543672966" />
-    <state width="1351" height="315" key="GridCell.Tab.0.right" timestamp="1581543672967">
+    <state width="1351" height="228" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1581547140674" />
+    <state width="1351" height="228" key="GridCell.Tab.0.right" timestamp="1581547140675">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.right/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1351" height="315" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1581543672967" />
+    <state width="1351" height="228" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1581547140675" />
     <state width="1351" height="296" key="GridCell.Tab.1.bottom" timestamp="1581542024704">
       <screen x="0" y="23" width="1440" height="877" />
     </state>

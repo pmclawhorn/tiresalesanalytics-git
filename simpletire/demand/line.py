@@ -13,21 +13,22 @@ from pylab import rcParams
 import seaborn as sns; sns.set()
 
 # Hierarchy is Brand -> Subtype -> Line
-
 # Filter the Data to Necessary Columns, Remove Extraneous Data
-
-# FIXME if you are not Pierce then this path will need to be changed (lazy i will fix later)
+# if you are not Pierce then this path will need to be changed (lazy i will fix later)
 jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin-01-26.csv')
-jan26 = jan26_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
-jan26 = jan26.loc[~(jan26['Source'] == "BulkOrders")]  # Remove bulk orders
+raw_2018 = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin_2018.csv')
+feb12_raw = pd.concat([jan26_raw, raw_2018], axis=0, sort=False)
+
+feb12 = feb12_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
+feb12 = feb12.loc[~(feb12['Source'] == "BulkOrders")]  # Remove bulk orders
 
 # Compute Columns for profit, include shipping cost
-jan26['Net_Profit'] = ((jan26['Ext_Sales'] - jan26['Ext_Cost']) - jan26['Admin_Ship_Est'])
-line_demand = jan26.loc[:, ['Created', 'Quantity', 'Line']]
+feb12['Net_Profit'] = ((feb12['Ext_Sales'] - feb12['Ext_Cost']) - feb12['Admin_Ship_Est'])
+line_demand = feb12.loc[:, ['Created', 'Quantity', 'Line']]
 
 # Get the vector for top 1% of lines
 n = 1
-line = jan26.loc[:, ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Net_Profit', 'Line']]
+line = feb12.loc[:, ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Net_Profit', 'Line']]
 line = line.sort_values(['Ext_Sales'], ascending=[False])
 line_group = line.groupby('Line').agg({'Net_Profit': ['sum', 'mean']}).reset_index()
 line_group = line_group.sort_values([('Net_Profit', 'sum')], ascending=False)
@@ -46,7 +47,7 @@ line_result = line_demand.groupby(['Created', 'Line'])['Quantity'].sum().reset_i
 # Plot Line
 print(line_result)
 line_result.plot(figsize=(15, 6))
-#plt.show()
+plt.show()
 
 # Plot Variance
 print("VARIANCE:\n")
