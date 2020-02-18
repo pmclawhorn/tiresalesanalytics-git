@@ -67,4 +67,5 @@ print(subtype_series)
 rcParams['figure.figsize'] = 18, 8
 decomposition = sm.tsa.seasonal_decompose(subtype_series, model='multiplicative')
 fig = decomposition.plot()
+plt.title('Trailer Tires - Seasonal Decomposition by Quantity Sold - 01/01/18-01-26-20')
 plt.show()
