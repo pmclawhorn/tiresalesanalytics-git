@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/piercemclawhorn.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/simpletire.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/simpletire.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demand/brand.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/brand.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demand/subtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/demand/subtype.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forecast/trailer_forecast.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/trailer_forecast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/subtypedemandstddev.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/subtypedemandstddev.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/subtypedemandvar.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/subtypedemandvar.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profit/subtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/profit/subtype.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/subtypeprofit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/subtypeprofit.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +45,7 @@
     <option name="myIpythonEnabled" value="false" />
     <option name="myUseExistingConsole" value="true" />
   </component>
-  <component name="RunManager" selected="Python.subtype">
+  <component name="RunManager" selected="Python.subtype (1)">
     <configuration name="brand" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -93,7 +88,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="line" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="subtype (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -105,7 +100,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/profit/line.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/profit/subtype.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.subtype (1)" />
         <item itemvalue="Python.subtype" />
         <item itemvalue="Python.trailer_forecast" />
         <item itemvalue="Python.line (1)" />
         <item itemvalue="Python.brand" />
-        <item itemvalue="Python.line" />
       </list>
     </recent_temporary>
   </component>
@@ -192,30 +187,30 @@
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state x="2375" y="302" key="FileChooserDialogImpl/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582099812967" />
-    <state width="918" height="325" key="GridCell.Tab.0.bottom" timestamp="1582103526427">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="1381" height="181" key="GridCell.Tab.0.bottom" timestamp="1582136698190">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="918" height="325" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103526427" />
-    <state width="1351" height="228" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1581547140676" />
-    <state width="918" height="325" key="GridCell.Tab.0.center" timestamp="1582103526426">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="918" height="325" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103800391" />
+    <state width="1381" height="181" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582136698190" />
+    <state width="1381" height="181" key="GridCell.Tab.0.center" timestamp="1582136698189">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.center/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931106" />
-    <state width="918" height="325" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103526426" />
-    <state width="1351" height="228" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1581547140675" />
-    <state width="918" height="325" key="GridCell.Tab.0.left" timestamp="1582103526426">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="918" height="325" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103800390" />
+    <state width="1381" height="181" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582136698189" />
+    <state width="1381" height="181" key="GridCell.Tab.0.left" timestamp="1582136698188">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.left/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931105" />
-    <state width="918" height="325" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103526426" />
-    <state width="1351" height="228" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1581547140674" />
-    <state width="918" height="325" key="GridCell.Tab.0.right" timestamp="1582103526427">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="918" height="325" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103800389" />
+    <state width="1381" height="181" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582136698188" />
+    <state width="1381" height="181" key="GridCell.Tab.0.right" timestamp="1582136698189">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.right/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="918" height="325" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103526427" />
-    <state width="1351" height="228" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1581547140675" />
+    <state width="918" height="325" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582103800390" />
+    <state width="1381" height="181" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582136698189" />
     <state width="1351" height="296" key="GridCell.Tab.1.bottom" timestamp="1582097318866">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>

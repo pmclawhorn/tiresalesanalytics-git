@@ -43,9 +43,13 @@ subtype_result.plot(figsize=(15, 6))
 plt.title('Units Sold 2018-19 - By Subtype')
 plt.show()
 
+print("MEAN:\n")
+print(subtype_result.mean())
+
 # Plot Variance
 print("VARIANCE:\n")
 print(subtype_result.var())
+
 #subvar = subtype_result.var()
 #subvar.plot(figsize=(15, 6))
 #plt.show()
@@ -54,6 +58,17 @@ print(subtype_result.var())
 print("STANDARD DEVIATION:\n")
 print(np.std(subtype_result))
 
+subtype_stats = pd.DataFrame()
+subtype_stats['Sub_Type'] = ['ATV/UTV', 'Antique', 'Commercial', 'Farm', 'Golf', 'Industrial', 'Lawn & Garden', 'Light Truck', 'Motorcycle', 'OTR', 'Passenger', 'Racing', 'Temp Spare', 'Trailer']
+subtype_stats['Variance'] = list(subtype_result.var())
+subtype_stats['Standard Deviation'] = list(np.std(subtype_result))
+subtype_stats['Sample Mean'] = list(subtype_result.mean())
+subtype_stats['Relative Standard Deviation'] = list(subtype_stats['Standard Deviation'] / subtype_stats['Sample Mean'])
+
+print("SUBTYPE STATS\n")
+print(subtype_stats)
+
 subtype_result.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemand.csv', encoding='utf-8', index=True)
 subtype_result.var().to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemandvar.csv', encoding='utf-8', index=True)
 np.std(subtype_result).to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemandstddev.csv', encoding='utf-8', index=True)
+subtype_result.mean().to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/subtypedemandmean.csv', encoding='utf-8', index=True)
