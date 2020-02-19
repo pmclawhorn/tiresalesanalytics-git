@@ -40,6 +40,7 @@ subtype_result = subtype_demand.groupby(['Created', 'Sub_Type'])['Quantity'].sum
 # Plot Subtype
 print(subtype_result)
 subtype_result.plot(figsize=(15, 6))
+plt.title('Units Sold 2018-19 - By Subtype')
 plt.show()
 
 # Plot Variance

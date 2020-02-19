@@ -22,8 +22,8 @@ feb12 = feb12.loc[~(feb12['Source'] == "BulkOrders")]  # Remove bulk orders
 
 # These Brands are selected from the top 10% of brands as computed in profit/brand.py
 feb12 = feb12.loc[feb12['Brand'].isin(['Hankook', 'Crosswind', 'Bridgestone', 'Goodyear', 'Toyo', 'Cooper', 'Achilles',
-                                       'Sceptor', 'Firestone', 'Nexen', 'Michelin', 'Atturo', 'Kumhho', 'Radar', 'Nitto',
-                                       'Falken', 'Federal', 'Westlake'])]
+                                      'Sceptor', 'Firestone', 'Nexen', 'Michelin', 'Atturo', 'Kumhho', 'Radar', 'Nitto',
+                                    'Falken', 'Federal', 'Westlake'])]
 
 # Compute Columns for profit, include shipping cost
 feb12['Net_Profit'] = ((feb12['Ext_Sales'] - feb12['Ext_Cost']) - feb12['Admin_Ship_Est'])
@@ -33,7 +33,8 @@ print(brand_demand)
 
 # Aggregate Data to Weekly
 brand_demand['Created'] = pd.to_datetime(brand_demand['Created'])
-brand_demand = brand_demand.groupby('Brand').resample('W-Mon', on='Created', label='left', closed='left').sum().reset_index().sort_values(by='Created')
+brand_demand = brand_demand.groupby('Brand').resample('W-Mon', on='Created', label='left', closed='left').sum()\
+                                                        .reset_index().sort_values(by='Created')
 print(brand_demand)
 
 # Fill data where a subtype may have been ordered 0 times in a week
