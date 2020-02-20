@@ -11,7 +11,7 @@ import statsmodels.api as sm
 import matplotlib
 from pylab import rcParams
 import seaborn as sns; sns.set()
-from forecast/trailer_forecast_load.py import subtype_result
+from trailer_forecast_load import subtype_result
 
 '''
 # Hierarchy is Brand -> Subtype -> Line
@@ -74,7 +74,7 @@ subtype_series = subtype_result
 # subtype_series = subtype_series.loc[:, ['Passenger']]
 print(subtype_series)
 
-# Show Graph for Seasonal Decomposition
+# SEASONAL DECOMPOSITION USING MOVING AVERAGES
 
 # plt.rcParams['lines.linewidth'] = 3.0
 plt.rcParams['figure.figsize'] = 18, 8
@@ -88,3 +88,5 @@ fig = plt.figure()
 plt.title('Trailer Tires - Seasonal Decomposition by Quantity Sold - 01/01/18-01-26-20')
 plt.grid(True)
 plt.show()
+
+
