@@ -77,15 +77,17 @@ print(results.summary())
 # plt.show()
 
 
-pred = results.get_prediction(start=pd.to_datetime('2018-01-01'), dynamic=False)
+pred = results.get_prediction(start=pd.to_datetime('2019-01-07'), dynamic=True)
 pred_ci = pred.conf_int()
 ax = trailer_series.plot(label='observed')
 pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(18, 6))
+
 """
 ax.fill_between(pred_ci.index,
                 pred_ci.iloc[:, 0],
                 pred_ci.iloc[:, 1], color='k', alpha=.2)
 """
+
 trailer_forecasted = pred.predicted_mean
 trailer_truth = trailer_series
 mse = ((trailer_forecasted - trailer_truth) ** 2).mean()
@@ -97,9 +99,26 @@ ax.set_xlabel('Date')
 ax.set_ylabel('Trailer Tire Sales')
 plt.title('Trailer Tires - SARIMAX Forecast', fontsize='large')
 
-
 plt.legend()
 plt.show()
+
+
+"""
+pred_uc = results.get_forecast(steps=100)
+pred_ci = pred_uc.conf_int()
+ax = trailer_series.plot(label='observed', figsize=(14, 7))
+pred_uc.predicted_mean.plot(ax=ax, label='Forecast')
+ax.fill_between(pred_ci.index,
+                pred_ci.iloc[:, 0],
+                pred_ci.iloc[:, 1], color='k', alpha=.25)
+ax.set_xlabel('Date')
+ax.set_ylabel('Tire Sales')
+"""
+
+#plt.legend()
+#plt.show()
+
+
 
 
 

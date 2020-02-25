@@ -33,6 +33,12 @@ subtype_demand_day['Created'] = pd.to_datetime(subtype_demand['Created'])
 subtype_demand_day = subtype_demand_day.groupby('Sub_Type').resample('D', on='Created', label='left', closed='left')\
                                         .sum().reset_index().sort_values(by='Created')
 
+# Aggregate Data to Monthly
+subtype_demand_month = feb12.loc[:, ['Created', 'Quantity', 'Sub_Type']]
+subtype_demand_month['Created'] = pd.to_datetime(subtype_demand_month['Created'])
+subtype_demand_month = subtype_demand_month.groupby('Sub_Type').resample('M', on='Created', label='right', closed='right')\
+                                        .sum().reset_index().sort_values(by='Created')
+
 # Fill data where a subtype may have been ordered 0 times in a week
 subtype_result = subtype_demand.groupby(['Created', 'Sub_Type'])['Quantity'].sum().reset_index().\
     pivot(index='Created', columns='Sub_Type', values='Quantity').resample('W-Mon', label='left', closed='left').\
@@ -42,3 +48,8 @@ subtype_result_day = subtype_demand_day.groupby(['Created', 'Sub_Type'])['Quanti
     pivot(index='Created', columns='Sub_Type', values='Quantity').resample('D', label='left', closed='left').\
     asfreq().fillna(0)
 
+subtype_result_month = subtype_demand_month.groupby(['Created', 'Sub_Type'])['Quantity'].sum().reset_index().\
+    pivot(index='Created', columns='Sub_Type', values='Quantity').resample('M', label='right', closed='right').\
+    asfreq().fillna(0)
+
+print(subtype_result_month)
