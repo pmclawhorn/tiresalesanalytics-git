@@ -10,6 +10,7 @@ import seaborn as sns; sns.set()
 # Hierarchy is Brand -> Subtype -> Line
 
 # Filter the Data to Necessary Columns, Remove Extraneous Data
+# IF YOU ARE NOT PIERCE YOU WILL NEED TO CHANGE THE FILE PATH
 jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin-01-26.csv')
 raw_2018 = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin_2018.csv')
 feb12_raw = pd.concat([jan26_raw, raw_2018], axis=0, sort=False)

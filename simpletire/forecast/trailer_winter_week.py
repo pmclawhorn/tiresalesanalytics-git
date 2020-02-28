@@ -53,6 +53,10 @@ print("Figure 7.6: Forecasting trailer tires sales using Holt-Winters method wit
 
 # Plot Diagnostics
 print(results)
+print(fit3.fittedvalues)
+print(fit3.forecast(52))
+trailer_2020forecast = fit3.forecast(52)
+trailer_2020forecast.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/trailer_2020Wforecast.csv', encoding='utf-8', index=True)
 # results.plot_diagnostics(figsize=(16, 8))
 
 # Plot levels, slopes, trends, and seasonal components

@@ -1,0 +1,154 @@
+SELECT
+    mo.id AS OrderNumber,
+    mdwo.id AS WOID,
+    CONCAT(mo.source,
+            IF(mo.source = 'Simple',
+                IF(IFNULL(mo.user_id,0) > 0, 'Admin', 'Website'),
+                '')) AS Source,
+    IF(mdwo.shipping_total = 0
+            AND mo.source NOT IN ('Walmart' , 'WalmartACC',
+            'SamsClub',
+            'SamsClubStore'),
+        '1',
+        '0') AS Free_Shipping,
+    mo.created AS Created,
+  IFNULL(IFNULL(IFNULL(book_revenue_date,IF(mdwo.warehouse_delivers = 1, mdwo.delivery_date, mdwo.fulfill_shipped_at)),if(mdwo.ship_date='0000-00-00 00:00:00',mo.created,mdwo.ship_date)),mo.created) AS 'RevenueDate',
+   mo.created AS OrderCreateDate,
+    mdwop.quantity AS Quantity,
+    mdwop.cost AS Cost,
+    mdwop.cost AS Unit_Cost,
+    mop.price AS Price,
+    mop.price AS Unit_Price,
+    mop.price * mdwop.quantity as Ext_Sales,
+    mdwop.cost * mdwop.quantity AS Ext_Cost,
+    mdwo.shipping_cost AS Admin_Ship_Est,
+    CONCAT(myp.width, '/', myp.ratio, '-', myp.rim) AS Size,
+    myp.width AS Width,
+      myp.ratio  AS Ratio,
+        myp.rim AS Rim,
+    myp.id AS ProductID,
+    mmplc.Line_Type AS "Line Type",
+    myp.part_number AS Part_Number,
+    mop.my_product_name as ProductName,
+    myp.quick_search AS Quick_Search,
+    IFNULL(cd.brand,mm.name) AS Brand,
+    IFNULL(cd.line,mmpl.name) AS Line,
+    IFNULL(cd.line,mmpl.name) AS ProductLineName,
+    mpst.name AS Sub_Type,
+    myp.weight AS Weight,
+mdw.name as SupplierWarehouseName,
+    md.company AS SupplierName,
+    mdw.zip AS Zip,
+    mo.status AS Order_Status,
+    mo.shipping_zip AS Shipping_Zip,
+    LOWER(mo.shipping_city) AS Shipping_City,
+    UPPER(mo.shipping_state) AS Shipping_State,
+    mo.shipping_address1 as Shipping_Address1,
+    mo.shipping_address2 as Shipping_Address2,
+    mo.shipping_phone as Shipping_Phone,
+    LOWER(mdw.city) AS Supplier_City,
+    UPPER(mdw.state) AS Supplier_State,
+    mo.shipping_residential AS Shipping_Residential,
+    mo.shipping_total AS Shipping_Collected,
+    #IF(mo.user_id IN (NULL , 0), 0, 1) AS IsAdmin,
+    IF(IFNULL(mo.user_id,0) = 0 ,0,1) AS IsAdmin,
+    -- IF(IFNULL(mo.user_id,0) in (350,318,357,326,330,317,146,188,333,335,329,261,315,334,356,256,207,48) ,1,0) AS IsSalesRep,
+    mo.user_id as UserId,
+    CONCAT(us.fname, ' ', us.lname) AS OrderPlacedBy,
+    IFNULL(mo.fedex_shipping_cost, 0) AS fedex_shipping_cost,
+    IFNULL(cd.web_price,myp.web_price) AS WebPrice,
+#IF(mo.source = 'Wholesale', ws.sub_domain, '') as SubSource
+-- IFNULL(wvd.ref_name,ws.sub_domain) AS SubSource
+IFNULL(walmart_distname,IFNULL(wvd.ref_name,ws.sub_domain)) AS SubSource
+FROM
+    my_orders mo
+-- LEFT JOIN
+--     (
+-- select my_order_id,GROUP_CONCAT(distinct note order by created SEPARATOR '\n') as note from my_order_notes
+--         group by my_order_id
+--     )mon on mon.my_order_id = mo.id
+LEFT JOIN
+wholesales ws on ws.id = mo.wholesale_id
+    LEFT JOIN wholesale_virtual_dcs wvd ON wvd.wholesale_id = mo.wholesale_id
+        AND wvd.ref_id = mo.warehouse_ref_id
+        LEFT JOIN
+    my_distributors_warehouses_orders mdwo ON mdwo.my_order_id = mo.id -- and mdwo.status IN ( 'Transit', 'Delivered')
+        -- LEFT JOIN
+--     my_order_products mop ON mop.my_order_id = mo.id
+--         CROSS JOIN
+--     my_distributors_warehouses_orders_products mdwop ON mop.id = mdwop.my_order_product_id
+--         AND mdwo.id = mdwop.my_distributors_warehouses_order_id
+LEFT JOIN
+    my_distributors_warehouses_orders_products mdwop ON mdwo.id = mdwop.my_distributors_warehouses_order_id
+LEFT JOIN
+    my_order_products mop ON mop.my_order_id = mo.id and mop.id = mdwop.my_order_product_id
+        LEFT JOIN
+    transfer_programs tp on tp.id = mdwop.program_ids and mdwop.is_transfer_program =1
+        LEFT JOIN
+    my_distributors_warehouses mdw ON mdwo.warehouse_id = mdw.id
+        LEFT JOIN
+    my_distributors md ON mdw.distributor_id = md.id
+        LEFT JOIN
+    (SELECT DISTINCT
+        my_distributors_warehouses_order_id,
+        case
+         WHEN shipping_desc LIKE '%FREIGHT%'
+                    OR shipping_desc in ('XPO Logistics','Estes Express Lines','Pitt Ohio Express','Estes Express Lines Hawaii','Pitt Ohio Express *Special Pricing*','Daylight Transport Guaranteed (Consolidated Serv.)')
+                THEN 'Freight'
+        WHEN
+            ((osl.status = 'Active') and (osl.shipping_desc LIKE '%day%'
+                OR osl.shipping_desc LIKE '%Express%'
+                OR osl.shipping_desc LIKE '%OVERNIGHT%'))
+        THEN
+            'Express'
+ELSE 'GROUND' END as shipping_desc
+        ,status
+
+
+    FROM
+        my_distributors_warehouses_orders_shipping_labels osl where status = 'Active' and shipped =1 and return_label = 0
+    ) osl ON osl.my_distributors_warehouses_order_id = mdwo.id
+LEFT JOIN
+    catalog_data cd ON mop.my_product_id = cd.id
+    LEFT JOIN
+    my_products myp ON mop.my_product_id = myp.id
+     LEFT JOIN my_manufacturers mm ON myp.manufacturer_id = mm.id
+     LEFT JOIN my_manufacturers_products_lines mmpl ON myp.manufacturers_products_line_id = mmpl.id
+#LEFT JOIN my_manufacturers_products_lines_categories mmplc ON mmpl.id=mmplc.manufacturers_products_line_id
+    #LEFT JOIN my_categories mcat ON mmplc.category_id = mcat.id
+    LEFT JOIN my_product_sub_types mpst ON myp.product_sub_type_id = mpst.id
+    LEFT JOIN my_manufacturers_products_lines_positions mmplp ON mmpl.position_id = mmplp.id
+    LEFT JOIN
+    (
+    select mmplc.manufacturers_products_line_id,GROUP_CONCAT(DISTINCT mc.name SEPARATOR ' ') AS Line_Type
+    from  my_manufacturers_products_lines_categories mmplc
+LEFT JOIN   my_categories mc ON mmplc.category_id = mc.id
+    where mc.name is not null #and mmplc.manufacturers_products_line_id = 255#286
+    GROUP BY mmplc.manufacturers_products_line_id
+    )
+    mmplc ON mmpl.id = mmplc.manufacturers_products_line_id
+        LEFT JOIN
+    my_installers mi ON mo.my_installer_id = mi.id
+        -- LEFT JOIN
+--  my_installers_rim_size_prices mirsp on mi.my_installers_rim_size_price_id = mirsp.id
+        LEFT JOIN
+    my_customers mc ON mc.id = mo.my_customer_id
+        LEFT JOIN
+    users us ON mo.user_id = us.id
+        LEFT JOIN
+    coupons C ON C.id = mo.coupon_id
+        -- LEFT JOIN
+--     (SELECT
+--         SUM(dwop.quantity) AS total_qty, dwo.my_order_id
+--     FROM
+--         my_distributors_warehouses_orders dwo
+--     INNER JOIN my_distributors_warehouses_orders_products dwop ON dwo.id = dwop.my_distributors_warehouses_order_id
+--     GROUP BY dwo.my_order_id) acq ON acq.my_order_id = mo.id
+--    where (mo.created) >= DATE_SUB(date(now()), interval 2 YEAR )
+where (mo.created) >= '2019-10-01'
+ and mo.status not in ('Void','Fraud','CC') and mdwo.status IN ( 'Transit', 'Delivered')
+  and (
+((mdwop.quantity) > 0 AND (mop.price) > 0 ) -- and (mdwop.cost)>0)
+OR ( mo.source = 'ReturnCenter')
+OR mo.id in (select replaced_order_id from replacement_orders_data)
+  )

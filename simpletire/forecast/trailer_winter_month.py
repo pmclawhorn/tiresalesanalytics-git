@@ -52,6 +52,10 @@ fit2.forecast(12).rename('Holt-Winters (additive-trend, mul-seasonal)').plot(ax=
 fit3.forecast(12).rename('Holt-Winters (add-damped-trend, add-seasonal)').plot(ax=ax, style='--', marker='o', color='blue', legend=True)
 # fit4.forecast(12).rename('Holt-Winters (add-damped-trend, mul-seasonal)').plot(ax=ax, style='--', marker='o', color='blue', legend=True)
 
+
+trailer_2020forecast = fit3.forecast(52)
+trailer_2020forecast.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/trailer_2020Mforecast.csv', encoding='utf-8', index=True)
+
 # Plot Forecasts
 plt.show()
 print("Figure 7.6: Forecasting trailer tires sales using Holt-Winters method with both additive and multiplicative seasonality.")
