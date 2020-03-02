@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forecast/trailer_forecast_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/trailer_forecast_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forecast/trailer_winter_month.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/trailer_winter_month.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forecast/trailer_winter_week.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/trailer_winter_week.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +69,9 @@
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -111,6 +111,9 @@
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -129,6 +132,9 @@
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -249,10 +255,10 @@
     <state x="1490" y="144" key="SettingsEditor/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582100373777" />
     <state x="237" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1580939544651" />
     <state x="582" y="88" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1582146354924" />
-    <state x="431" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1582650279894">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="2480" y="454" key="com.intellij.ide.util.TipDialog" timestamp="1583107361342">
+      <screen x="1440" y="23" width="2560" height="1417" />
     </state>
-    <state x="2206" y="461" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582100451414" />
+    <state x="2480" y="454" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583107361342" />
     <state x="431" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1582650279894" />
   </component>
 </project>
