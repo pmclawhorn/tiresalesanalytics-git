@@ -19,9 +19,10 @@ brandagg = brandagg.loc[:, ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price
 brandagg = brandagg.sort_values(['Quantity'], ascending=[False])
 brand_group = brandagg.groupby('Brand').agg({'Quantity': ['sum', 'mean']}).reset_index()
 brand_group = brand_group.sort_values([('Quantity', 'sum')], ascending=False)
+print("The top 20 brands at this level are:\n")
 print(brand_group.head(20))
 top20_brands = list(brand_group.head(20)['Brand'])
-print(top20_brands)
+# print(top20_brands)
 
 """
 # Aggregate Data to Monthly
