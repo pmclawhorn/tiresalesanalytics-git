@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from forecast import helpers
 from forecast.load_data import historical_data
+from forecast.helpers import TopTwenty
 from tabulate import tabulate
 
 pdtabulate = lambda df: tabulate(df, headers='keys', tablefmt='psql')
@@ -119,7 +119,7 @@ class PreProcessData:
 class BrandWithinSubtype(PreProcessData):
     def double_aggregate(self):
         self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
-        self.data = historical_data.loc[(historical_data[str(self.level_two)] == str(self.group_two))]
+        self.data = self.data.loc[(self.data[str(self.level_two)] == str(self.group_two))]
 
         # Compute Columns for profit, include shipping cost
         self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -150,8 +150,8 @@ class Warehouse(PreProcessData):
     # double_aggregate for when warehouse and brand is of interest
     def double_aggregate(self, warehouse):
         self.data = historical_data.loc[(historical_data['SupplierWarehouseName'] == str(warehouse))]
-        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
-        self.data = historical_data.loc[(historical_data[str(self.level_two)] == str(self.group_two))]
+        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+        self.data = self.data.loc[(self.data[str(self.level_two)] == str(self.group_two))]
 
         # Compute Columns for profit, include shipping cost
         self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -177,7 +177,9 @@ class Warehouse(PreProcessData):
     # override aggregate for when warehouse is of interest
     def aggregate(self, warehouse):
         self.data = historical_data.loc[(historical_data['SupplierWarehouseName'] == str(warehouse))]
-        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
+        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+      #  print("TEST")
+      #  print(self.data)
 
         # Compute Columns for profit, include shipping cost
         self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -185,10 +187,12 @@ class Warehouse(PreProcessData):
         # Aggregate Data to Weekly
         subtype_demand_week = self.data.loc[:, ['Created', 'Quantity', str(self.level_one)]]
         subtype_demand_week['Created'] = pd.to_datetime(subtype_demand_week['Created'])
+      #  print("TEST subtype_demand_week")
+      #  print(subtype_demand_week)
         subtype_demand_week = subtype_demand_week.groupby(str(self.level_one)).resample('W-Mon', on='Created',
                                                                                         label='left',
                                                                                         closed='left') \
-            .sum().reset_index().sort_values(by='Created')
+            .sum().reset_index().sort_values(by='Created') # FIXME
 
         # Fill data where a subtype may have been ordered 0 times in a week
         subtype_result_week = subtype_demand_week.groupby(['Created', str(self.level_one)])['Quantity'].sum(). \
@@ -215,7 +219,8 @@ def main():
             print("Invalid Number, Please Try Again")
 
     # Get user input for data frequency, TODO: weekly works for all, monthly does not yet
-    frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly)"))
+    # frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly)"))
+    frequency = int(52)
 
     # For ALL Warehouses Combined
     if want_warehouse == "N":
@@ -224,7 +229,7 @@ def main():
             level_two = 0
 
             # Get user input for subgroup of interest
-            subgroup = str(input("What subgroup are you interested in? (e.g. \'Trailer\', \'Hankook\')"))
+            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\')"))
             group_one = subgroup
             group_two = 0
 
@@ -233,7 +238,9 @@ def main():
             result = tire_data.aggregate()
             tire_data.demand_spikes()
             # tire_data.normalize()
-            print(result.head(20))
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print(group_one)
+            print(pdtabulate(result.head(20)))
             return tire_data.data
 
         elif level == int(4):
@@ -251,7 +258,9 @@ def main():
             result = tire_data.double_aggregate()
             tire_data.demand_spikes()
             # tire_data.normalize()
-            print(result.head(20))
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print(group_one + " - " + group_two)
+            print(pdtabulate(result.head(20)))
             return tire_data.data
 
     # For Warehouse Level
@@ -261,21 +270,23 @@ def main():
             level_two = 0
 
             # Get user input for subgroup of interest
-            subgroup = str(input("What subgroup are you interested in? (e.g. \'Trailer\', \'Hankook\')"))
+            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\')"))
             group_one = subgroup
             group_two = 0
 
             # Show Top 20 Warehouses for that Sub_Type
             top_warehouses = TopTwenty("Sub_Type", str(group_one))
-            top_warehouses.show()
-            warehouse = str(input("Which Warehouse are you interested in?"))
+            top_warehouses.show_warehouses()
+            warehouse = str(input("Which Warehouse are you interested in? (enter exact name)"))
 
             # Instantiate PreProcessData Object
-            tire_data = PreProcessData(level_one, level_two, group_one, group_two, frequency)
-            result = tire_data.aggregate()
+            tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency)
+            result = tire_data.aggregate(warehouse)
             tire_data.demand_spikes()
             # tire_data.normalize()
-            print(result.head(20))
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print(group_one + " - " + warehouse)
+            print(pdtabulate(result.head(20)))
             return tire_data.data
 
         elif level == int(4):
@@ -288,18 +299,20 @@ def main():
             # Show Top 20 Warehouses for that Sub_Type, prompt for selection
             top_warehouses = TopTwenty("Sub_Type", str(group_one))
             top_warehouses.show_warehouses()
-            warehouse = str(input("Which Warehouse are you interested in?"))
+            warehouse = str(input("Which Warehouse are you interested in? (enter exact name)"))
 
             # Show Top 20 Brands for that Sub_Type and Warehouse, prompt for selection
             top_brands = TopTwenty("Sub_Type", str(group_one))
             top_brands.show_brands_in_warehouse(warehouse)
             group_two = str(input("Which Brand are you interested in?"))
 
-            tire_data = BrandWithinSubtype(level_one, level_two, group_one, group_two, frequency)
-            result = tire_data.double_aggregate()
+            tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency)
+            result = tire_data.double_aggregate(warehouse)
             tire_data.demand_spikes()
             # tire_data.normalize()
-            print(result.head(20))
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print(group_one + " - " + group_two + " - " + warehouse)
+            print(pdtabulate(result.head(20)))
             return tire_data.data
 
 
