@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from forecast.load_data import historical_data
-from forecast.helpers import TopTwenty
+from forecast.data_load import historical_data
+from forecast.data_helpers import TopTwenty
 from tabulate import tabulate
 
 pdtabulate = lambda df: tabulate(df, headers='keys', tablefmt='psql')

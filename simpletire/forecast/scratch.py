@@ -2,7 +2,7 @@ import warnings
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from forecast.load_data import historical_data
+from forecast.data_load import historical_data
 
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')

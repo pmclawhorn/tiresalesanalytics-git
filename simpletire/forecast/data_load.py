@@ -1,6 +1,6 @@
 """
     Author: Pierce M. McLawhorn
-    This Module loads raw data from .csv records, such it may be manipulated in preprocess_data.py.
+    This Module loads raw data from .csv records, such it may be manipulated in data_preprocess.py.
     This type of global variable implementation is used purely for speed and memory efficiency.
     Run this module once (ensuring that you set the correct file paths) and then run one of the *_forecast.py modules.
 """

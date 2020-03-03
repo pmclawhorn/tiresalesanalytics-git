@@ -1,3 +1,9 @@
+"""
+    Author: Pierce M. McLawhorn
+    This Module fits a Holt/Winters (triple exponential smoothing) model to time series data generated in the
+    imported module data_preprocess.
+"""
+
 import matplotlib.pyplot as plt
 import warnings
 
