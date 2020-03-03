@@ -15,10 +15,8 @@ import pandas as pd
 pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 100)
 import statsmodels.api as sm
-import matplotlib
-from pylab import rcParams
 import seaborn as sns; sns.set()
-from forecast.trailer_forecast_load import subtype_result
+from old.trailer_forecast_load import subtype_result
 
 # Initialize local variable for time series
 trailer_series = subtype_result['Trailer']

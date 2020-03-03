@@ -29,7 +29,7 @@ class TopTwenty:
         brands = brands.sort_values(['Quantity'], ascending=[False])
         brand_group = brands.groupby('Brand').agg({'Quantity': ['sum', 'mean']}).reset_index()
         brand_group = brand_group.sort_values([('Quantity', 'sum')], ascending=False)
-        print("The top 20 Brands for Sub_Type " + self.group + "are:")
+        print("The top 20 Brands for Sub_Type " + self.group + " are: ")
         print(pdtabulate(brand_group.head(20)))
         top20_brands = list(brand_group.head(20)['Brand'])
         return top20_brands
@@ -43,7 +43,7 @@ class TopTwenty:
         warehouses = warehouses.sort_values(['Quantity'], ascending=[False])
         warehouse_group = warehouses.groupby('SupplierWarehouseName').agg({'Quantity': ['sum', 'mean']}).reset_index()
         warehouse_group = warehouse_group.sort_values([('Quantity', 'sum')], ascending=False)
-        print("The top 20 Warehouses for Sub_Type " + self.group + " are:")
+        print("The top 20 Warehouses for Sub_Type " + self.group + " are: ")
         print(pdtabulate(warehouse_group.head(20)))
         top20_warehouses = list(warehouse_group.head(20)['SupplierWarehouseName'])
         return top20_warehouses
@@ -57,7 +57,7 @@ class TopTwenty:
         brands = brands.sort_values(['Quantity'], ascending=[False])
         brand_group = brands.groupby('Brand').agg({'Quantity': ['sum', 'mean']}).reset_index()
         brand_group = brand_group.sort_values([('Quantity', 'sum')], ascending=False)
-        print("The top 20 Brands for Sub_Type " + self.group + "in Warehouse" + warehouse + " are:")
+        print("The top 20 Brands for Sub_Type " + self.group + " in Warehouse " + warehouse + " are: ")
         print(pdtabulate(brand_group.head(20)))
         top20_brands = list(brand_group.head(20)['Brand'])
         return top20_brands

@@ -8,12 +8,10 @@ import pandas as pd
 pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 100)
 import seaborn as sns; sns.set()
-from forecast.trailer_forecast_load import subtype_result
-from forecast.trailer_forecast_load import subtype_result_day
+from old.trailer_forecast_load import subtype_result
 from statsmodels.tsa.arima_model import ARIMA
 from sklearn.metrics import mean_squared_error
 from math import sqrt
-import numpy as np
 
 # Initialize local variable for time series
 trailer_series = subtype_result['Trailer']
