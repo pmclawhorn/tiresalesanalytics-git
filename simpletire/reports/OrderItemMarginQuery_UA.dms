@@ -37,6 +37,7 @@ SELECT
     mpst.name AS Sub_Type,
     myp.weight AS Weight,
 mdw.name as SupplierWarehouseName,
+mdw.id as SupplierWarehouseID,
     md.company AS SupplierName,
     mdw.zip AS Zip,
     mo.status AS Order_Status,

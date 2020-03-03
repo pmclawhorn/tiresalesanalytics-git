@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/piercemclawhorn.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/piercemclawhorn.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forecast/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forecast/trailer_forecast_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/trailer_forecast_load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forecast/winters_forecast.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/winters_forecast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/OrderItemMarginQuery_UA.dms" beforeDir="false" afterPath="$PROJECT_DIR$/reports/OrderItemMarginQuery_UA.dms" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +37,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="pyconsole" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -43,20 +49,17 @@
     </option>
     <option name="myIpythonEnabled" value="false" />
   </component>
-  <component name="RunManager" selected="Python.trailer_winter_month">
-    <configuration name="trailer_expsmoothing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.explore_scratch">
+    <configuration name="explore_scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/trailer_expsmoothing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/explore_scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -65,19 +68,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="trailer_forecast_load" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="load_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/trailer_forecast_load.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/load_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -86,19 +86,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="trailer_sarimax_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="preprocess_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/trailer_sarimax_1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/preprocess_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,19 +147,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.trailer_forecast_load" />
-      <item itemvalue="Python.trailer_sarimax_1" />
-      <item itemvalue="Python.trailer_expsmoothing" />
+      <item itemvalue="Python.load_data" />
+      <item itemvalue="Python.preprocess_data" />
       <item itemvalue="Python.trailer_winter_month" />
       <item itemvalue="Python.trailer_winter_week" />
+      <item itemvalue="Python.explore_scratch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.explore_scratch" />
+        <item itemvalue="Python.preprocess_data" />
+        <item itemvalue="Python.load_data" />
         <item itemvalue="Python.trailer_winter_month" />
         <item itemvalue="Python.trailer_winter_week" />
-        <item itemvalue="Python.trailer_forecast_load" />
-        <item itemvalue="Python.trailer_expsmoothing" />
-        <item itemvalue="Python.trailer_sarimax_1" />
       </list>
     </recent_temporary>
   </component>
@@ -184,15 +181,15 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="354" y="127" key="#Notifications/0.23.1440.877@0.23.1440.877" timestamp="1581541140861" />
-    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582601810485">
+    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583200155823">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
-    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582601810485" />
+    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583200155823" />
     <state x="498" y="165" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1582184557051" />
-    <state x="2958" y="474" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582097388042">
+    <state x="2958" y="474" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583197021577">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
-    <state x="2958" y="474" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582097388042" />
+    <state x="2958" y="474" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583197021577" />
     <state x="835" y="221" key="EnvironmentVariablesDialog" timestamp="1582145487372">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -201,32 +198,32 @@
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state x="2375" y="302" key="FileChooserDialogImpl/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582099812967" />
-    <state width="1524" height="256" key="GridCell.Tab.0.bottom" timestamp="1582602927352">
+    <state width="1415" height="260" key="GridCell.Tab.0.bottom" timestamp="1583200159653">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1524" height="256" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582602927352" />
+    <state width="1415" height="260" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583200159653" />
     <state width="1381" height="181" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582138343583" />
     <state width="1226" height="181" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408352" />
-    <state width="1524" height="256" key="GridCell.Tab.0.center" timestamp="1582602927351">
+    <state width="1415" height="260" key="GridCell.Tab.0.center" timestamp="1583200159652">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.center/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931106" />
-    <state width="1524" height="256" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582602927351" />
+    <state width="1415" height="260" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583200159652" />
     <state width="1381" height="181" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582138343582" />
     <state width="1226" height="181" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408351" />
-    <state width="1524" height="256" key="GridCell.Tab.0.left" timestamp="1582602927350">
+    <state width="1415" height="260" key="GridCell.Tab.0.left" timestamp="1583200159651">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.left/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931105" />
-    <state width="1524" height="256" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582602927350" />
+    <state width="1415" height="260" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583200159651" />
     <state width="1381" height="181" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582138343582" />
     <state width="1226" height="181" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408348" />
-    <state width="1524" height="256" key="GridCell.Tab.0.right" timestamp="1582602927352">
+    <state width="1415" height="260" key="GridCell.Tab.0.right" timestamp="1583200159653">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.right/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1524" height="256" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582602927352" />
+    <state width="1415" height="260" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583200159653" />
     <state width="1381" height="181" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582138343582" />
     <state width="1226" height="181" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408352" />
     <state width="1351" height="296" key="GridCell.Tab.1.bottom" timestamp="1582097318866">
@@ -249,16 +246,16 @@
     </state>
     <state width="1351" height="296" key="GridCell.Tab.1.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582097318865" />
     <state width="1351" height="296" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1581542024704" />
-    <state x="582" y="88" key="SettingsEditor" timestamp="1582146354924">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="1490" y="144" key="SettingsEditor/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582100373777" />
-    <state x="237" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1580939544651" />
-    <state x="582" y="88" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1582146354924" />
-    <state x="2480" y="454" key="com.intellij.ide.util.TipDialog" timestamp="1583107361342">
+    <state x="1490" y="144" key="SettingsEditor" timestamp="1583192103300">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
-    <state x="2480" y="454" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583107361342" />
+    <state x="1490" y="144" key="SettingsEditor/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583192103300" />
+    <state x="237" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1583185301465" />
+    <state x="582" y="88" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1582146354924" />
+    <state x="2480" y="454" key="com.intellij.ide.util.TipDialog" timestamp="1583197035381">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="2480" y="454" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583197035381" />
     <state x="431" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1582650279894" />
   </component>
 </project>

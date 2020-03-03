@@ -17,6 +17,7 @@ feb12_raw = pd.concat([jan26_raw, raw_2018], axis=0, sort=False)
 feb12 = feb12_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price',
                           'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type', 'Line', 'Admin_Ship_Est']]
 feb12 = feb12.loc[~(feb12['Source'] == "BulkOrders")]
+
 feb12 = feb12.loc[(feb12['Sub_Type'] == "Trailer")]  # Select only the Trailer Sub_Type
 
 # Compute Columns for profit, include shipping cost
@@ -53,4 +54,6 @@ subtype_result_month = subtype_demand_month.groupby(['Created', 'Sub_Type'])['Qu
     pivot(index='Created', columns='Sub_Type', values='Quantity').resample('M', label='right', closed='right').\
     asfreq().fillna(0)
 
-print(subtype_result_month)
+
+
+# print(subtype_result_month)

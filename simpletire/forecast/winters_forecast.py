@@ -2,14 +2,27 @@ import matplotlib.pyplot as plt
 from pandas import DataFrame
 from statsmodels.tsa.holtwinters import SimpleExpSmoothing, Holt, ExponentialSmoothing
 import warnings
+
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
 import pandas as pd
+
 pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 100)
-import seaborn as sns; sns.set()
+import seaborn as sns;
+
+sns.set()
 from forecast.trailer_forecast_load import subtype_result
 from forecast.trailer_forecast_load import subtype_result_month
+from forecast.preprocess_data import DataLoad
+
+def main():
+    subgroup = input("What subgroup are you interested in? (e.g. \"Trailer\"")
+    frequency = input("What is the frequency of your input data? (12 for monthly, 52 for weekly)")
+
+
+if __name__ == "__main__":
+    main()
 
 
 class WintersForecast:
@@ -20,5 +33,19 @@ class WintersForecast:
         self.frequency = frequency
         self.lookahead = lookahead
 
-    
+    def generate_forecast(self):
+        pass
 
+    def plot_forecast(self):
+        pass
+
+    def plot_residuals(self):
+        pass
+
+    def generate_csv(self):
+        pass
+
+
+# child class for other forecast
+class OtherForecast(WintersForecast):
+    pass
