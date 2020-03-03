@@ -33,7 +33,8 @@ results["Multiplicative"] = [fit2.params[p] for p in params] + [fit2.sse]
 results["Additive Dam"] = [fit3.params[p] for p in params] + [fit3.sse]
 results["Multiplicative Dam"] = [fit4.params[p] for p in params] + [fit4.sse]
 
-ax = trailer_series.plot(figsize=(24, 8), marker='o', color='black', title="2020 Forecasts: Holt-Winters' Method (monthly data)")
+ax = trailer_series.plot(figsize=(24, 8), marker='o', color='black',
+                         title="2020 Forecasts: Holt-Winters' Method (monthly data)")
 ax.set_ylabel("Trailer Tires Sales (units sold)")
 ax.set_xlabel("Year")
 # fit1.fittedvalues.plot(ax=ax, style='--', color='red')

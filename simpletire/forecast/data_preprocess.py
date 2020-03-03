@@ -236,12 +236,12 @@ def main():
 
             # Instantiate PreProcessData Object
             tire_data = PreProcessData(level_one, level_two, group_one, group_two, frequency)
-            result = tire_data.aggregate()
+            tire_data.aggregate()
             tire_data.demand_spikes()
             # tire_data.normalize()
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(group_one)
-            print(pdtabulate(result.head(20)))
+            print(pdtabulate(tire_data.data.head(20)))
             return tire_data.data
 
         elif level == int(4):
@@ -259,12 +259,12 @@ def main():
             tire_data.double_aggregate()
             tire_data.demand_spikes()
             # tire_data.normalize()
-            name = str(level_two) + " - " + str(group_two)
-            result = tire_data.data.rename(columns={str(level_two): name})
+            name = str(group_one) + " - " + str(group_two)
+            tire_data.data.rename(columns={str(group_two): name})
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(name)
-            print(pdtabulate(result.head(20)))
-            return result
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data.data
 
     # For Warehouse Level
     elif want_warehouse == "Y":
@@ -288,11 +288,11 @@ def main():
             tire_data.demand_spikes()
             # tire_data.normalize()
             name = str(group_one) + " - " + str(warehouse)
-            result = tire_data.data.rename(columns={str(group_one): name})
+            tire_data.data.rename(columns={str(group_one): name})
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(name)
-            print(pdtabulate(result.head(20)))
-            return result
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data.data
 
         elif level == int(4):
             level_one = "Sub_Type"
@@ -317,11 +317,11 @@ def main():
             tire_data.demand_spikes()
             # tire_data.normalize()
             name = str(level_two) + " - " + str(group_two) + " - " + str(warehouse)
-            result = tire_data.data.rename(columns={str(level_two): name})
+            tire_data.data.rename(columns={str(level_two): name})
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(name)
-            print(pdtabulate(result.head(20)))
-            return result
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data.data
 
 
 def preprocess_data():
@@ -356,13 +356,13 @@ def preprocess_data():
 
             # Instantiate PreProcessData Object
             tire_data = PreProcessData(level_one, level_two, group_one, group_two, frequency)
-            result = tire_data.aggregate()
+            tire_data.aggregate()
             tire_data.demand_spikes()
             # tire_data.normalize()
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(group_one)
-            print(pdtabulate(result.head(20)))
-            return tire_data.data
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data
 
         elif level == int(4):
             level_one = "Sub_Type"
@@ -379,12 +379,12 @@ def preprocess_data():
             tire_data.double_aggregate()
             tire_data.demand_spikes()
             # tire_data.normalize()
-            name = str(level_two) + " - " + str(group_two)
-            result = tire_data.data.rename(columns={str(level_two): name})
+            name = str(group_one) + " - " + str(group_two)
+            tire_data.data.rename(columns={str(group_two): name})
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(name)
-            print(pdtabulate(result.head(20)))
-            return result
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data
 
     # For Warehouse Level
     elif want_warehouse == "Y":
@@ -408,11 +408,11 @@ def preprocess_data():
             tire_data.demand_spikes()
             # tire_data.normalize()
             name = str(group_one) + " - " + str(warehouse)
-            result = tire_data.data.rename(columns={str(group_one): name})
+            tire_data.data.rename(columns={str(group_one): name})
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(name)
-            print(pdtabulate(result.head(20)))
-            return result
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data
 
         elif level == int(4):
             level_one = "Sub_Type"
@@ -437,15 +437,15 @@ def preprocess_data():
             tire_data.demand_spikes()
             # tire_data.normalize()
             name = str(level_two) + " - " + str(group_two) + " - " + str(warehouse)
-            result = tire_data.data.rename(columns={str(level_two): name})
+            tire_data.data.rename(columns={str(level_two): name})
             print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
             print(name)
-            print(pdtabulate(result.head(20)))
-            return result
+            print(pdtabulate(tire_data.data.head(20)))
+            return tire_data
 
 
 if __name__ == "__main__":
     main()
 
-if __name__ == "preprocess_data":
+if __name__ == "data_preprocess":
     preprocess_data()

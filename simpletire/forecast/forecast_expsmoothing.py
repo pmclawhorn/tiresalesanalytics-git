@@ -3,17 +3,21 @@
     This Module fits an exponential smoothing model to time series data generated in the imported module
     data_preprocess.
 """
-import warnings
 import matplotlib.pyplot as plt
-from statsmodels.tsa.holtwinters import SimpleExpSmoothing
+import warnings
+import pandas as pd
+import seaborn as sns
+from tabulate import tabulate
+from forecast.data_preprocess import PreProcessData
+from old.trailer_forecast_load import subtype_result_month
 
+pdtabulate = lambda df: tabulate(df, headers='keys', tablefmt='psql')
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
-import pandas as pd
 pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 100)
-import seaborn as sns; sns.set()
-from old.trailer_forecast_load import subtype_result_month
+sns.set()
+
 
 # Initialize local variable for time series
 trailer_series = subtype_result_month['Trailer']
