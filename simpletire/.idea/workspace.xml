@@ -4,9 +4,7 @@
     <list default="true" id="a9865744-5b49-41e2-b42f-dcae7c8f8e10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forecast/data_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/data_preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forecast/forecast_expsmoothing.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/forecast_expsmoothing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forecast/forecast_winters.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/forecast_winters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forecast/trailer_winter_week.py" beforeDir="false" afterPath="$PROJECT_DIR$/forecast/trailer_winter_week.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,24 +70,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="data_load" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="simpletire" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/data_load.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="data_preprocess" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,7 +88,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="forecast_winters" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="forecast_prophet" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
+      <module name="simpletire" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/forecast" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/forecast_prophet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="forecast_winters" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
       <module name="simpletire" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -119,7 +117,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/forecast/forecast_winters.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -147,17 +145,17 @@
     <list>
       <item itemvalue="Python.explore_scratch" />
       <item itemvalue="Python.data_helpers" />
-      <item itemvalue="Python.data_load" />
       <item itemvalue="Python.data_preprocess" />
       <item itemvalue="Python.forecast_winters" />
+      <item itemvalue="Python.forecast_prophet" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.forecast_prophet" />
         <item itemvalue="Python.forecast_winters" />
         <item itemvalue="Python.data_preprocess" />
         <item itemvalue="Python.data_helpers" />
         <item itemvalue="Python.explore_scratch" />
-        <item itemvalue="Python.data_load" />
       </list>
     </recent_temporary>
   </component>
@@ -174,19 +172,31 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="354" y="127" key="#Notifications" timestamp="1581541140861">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="354" y="127" key="#Notifications/0.23.1440.877@0.23.1440.877" timestamp="1581541140861" />
-    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583224348641">
+    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583351914229">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
-    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583224348641" />
+    <state x="2199" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583351914229" />
     <state x="498" y="165" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1582184557051" />
-    <state x="2958" y="474" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583197021577">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state x="654" y="343" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583258011366">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="654" y="343" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583258011366" />
     <state x="2958" y="474" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583197021577" />
     <state x="835" y="221" key="EnvironmentVariablesDialog" timestamp="1582145487372">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -196,32 +206,32 @@
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state x="2375" y="302" key="FileChooserDialogImpl/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582099812967" />
-    <state width="1454" height="266" key="GridCell.Tab.0.bottom" timestamp="1583224354586">
+    <state width="1294" height="264" key="GridCell.Tab.0.bottom" timestamp="1583362429626">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1454" height="266" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583224354586" />
+    <state width="1294" height="264" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583362429626" />
     <state width="1381" height="181" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582138343583" />
     <state width="1226" height="181" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408352" />
-    <state width="1454" height="266" key="GridCell.Tab.0.center" timestamp="1583224354585">
+    <state width="1294" height="264" key="GridCell.Tab.0.center" timestamp="1583362429625">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.center/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931106" />
-    <state width="1454" height="266" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583224354585" />
+    <state width="1294" height="264" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583362429625" />
     <state width="1381" height="181" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582138343582" />
     <state width="1226" height="181" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408351" />
-    <state width="1454" height="266" key="GridCell.Tab.0.left" timestamp="1583224354585">
+    <state width="1294" height="264" key="GridCell.Tab.0.left" timestamp="1583362429624">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.left/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931105" />
-    <state width="1454" height="266" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583224354585" />
+    <state width="1294" height="264" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583362429624" />
     <state width="1381" height="181" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582138343582" />
     <state width="1226" height="181" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408348" />
-    <state width="1454" height="266" key="GridCell.Tab.0.right" timestamp="1583224354585">
+    <state width="1294" height="264" key="GridCell.Tab.0.right" timestamp="1583362429625">
       <screen x="1440" y="23" width="2560" height="1417" />
     </state>
     <state width="1675" height="578" key="GridCell.Tab.0.right/0.23.1440.877/1440.-297.2560.1417@1440.-297.2560.1417" timestamp="1580880931107" />
-    <state width="1454" height="266" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583224354585" />
+    <state width="1294" height="264" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583362429625" />
     <state width="1381" height="181" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582138343582" />
     <state width="1226" height="181" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1582264408352" />
     <state width="1351" height="296" key="GridCell.Tab.1.bottom" timestamp="1582097318866">
@@ -244,9 +254,10 @@
     </state>
     <state width="1351" height="296" key="GridCell.Tab.1.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1582097318865" />
     <state width="1351" height="296" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1581542024704" />
-    <state x="1490" y="144" key="SettingsEditor" timestamp="1583192103300">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state x="33" y="90" key="SettingsEditor" timestamp="1583255558123">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="33" y="90" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1583255558123" />
     <state x="1490" y="144" key="SettingsEditor/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1583192103300" />
     <state x="237" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1583185301465" />
     <state x="582" y="88" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1582146354924" />
