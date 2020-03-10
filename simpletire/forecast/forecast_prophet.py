@@ -16,6 +16,7 @@ from forecast.data_preprocess import PreProcessData
 from forecast.data_preprocess import preprocess_data
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
+import matplotlib.patches as mpatches
 from fbprophet.diagnostics import performance_metrics
 from fbprophet.plot import plot_cross_validation_metric
 from scipy.stats import boxcox
@@ -24,7 +25,6 @@ import plotly.offline as py
 py.init_notebook_mode()
 
 pdtabulate = lambda df: tabulate(df, headers='keys', tablefmt='psql')
-# warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
 pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 100)
@@ -40,7 +40,8 @@ class ProphetForecast:
         self.frequency = frequency
         self.lookahead = lookahead
         self.name = name
-        self.m = Prophet()
+        self.m = Prophet(yearly_seasonality=True)
+        self.out_table = time_series  # placeholder for real forecast
 
     def generate(self):
         # Add holidays as a component to the forecast
@@ -58,41 +59,61 @@ class ProphetForecast:
         future = self.m.make_future_dataframe(periods=int(self.lookahead))
         forecast = self.m.predict(future)
 
-        fig = self.m.plot(forecast, xlabel="Time", ylabel="Tire Sales (units sold)")
-        ax = fig.gca()
-        ax.set_title(label="2020 Prophet Forecast - " + self.name, fontsize=24)
-        plt.show()
+        # Plot the Components
+        plot_bool = str(input("Would you like to plot the forecast?? (Y/N)"))
+        if plot_bool == "Y":
+            fig = self.m.plot(forecast, figsize=(13.33, 7.5))  # TODO: color='#fe6223')
+            ax = fig.gca()
+            ax.set_title(label="2020 Prophet Forecast - " + self.name, fontsize=24)
+            ax.set_xlabel(xlabel="Month", fontsize=16)
+            ax.set_ylabel(ylabel="Tire Sales (units sold)", fontsize=16)
+            ax.set_autoscale_on(b=True)
+            # ax.subplots_adjust(top=0.93)
+            plt.show()
 
-        fig2 = self.m.plot_components(forecast)
-        ax2 = fig2.gca()
-        # ax2.set_title(label="2020 Prophet Forecast - " + self.name + " - Trend Components", fontsize=24)
-        plt.show()
+        # Plot the Components
+        plot_bool = str(input("Would you like to plot the forecast components?? (Y/N)"))
+        if plot_bool == "Y":
+            fig2 = self.m.plot_components(forecast)  # , figsize=(10.5, 6))
+            ax2 = fig2.gca()
+            # FIXME title is on bottom for some reason
+            #  ax2.set_title(label="2020 Prophet Forecast - " + self.name + " - Trend Components", fontsize=14)
+            plt.show()
 
     def plot_(self):
         # Plot Forecasts
         pass
 
     def plot_residuals(self):
+
         print("CROSS VALIDATION RESULTS")
-        df_cv = cross_validation(self.m, initial='365 days', period='365 days', horizon='365 days')
+        df_cv = cross_validation(self.m, initial='365.25 days', period='365.25 days', horizon='365.25 days')
+       # df_cv = cross_validation(self.m, initial='180 days', period='180 days', horizon='180 days')
+        self.out_table = df_cv
         print(pdtabulate(df_cv))
 
         print("PERFORMANCE METRICS")
         df_p = performance_metrics(df_cv)
         print(pdtabulate(df_p))
+
         # Mean absolute percentage error
-        fig3 = plot_cross_validation_metric(df_cv, metric='mape')
+        fig3 = plot_cross_validation_metric(df_cv, metric='mape', figsize=(11, 6))
         ax3 = fig3.gca()
+        blue_patch = mpatches.Patch(color='#5F86BC', label='Accuracy ~= ((1 - MAPE) * 100) %')
+        plt.legend(handles=[blue_patch])
+        # ax3.legend("Accuracy ~= ((1 - MAPE) * 100) %")
+        ax3.set_title(label="Prophet Forecast - Mean Absolute Percentage Error - " + self.name, fontsize=24)
+        ax3.set_xlabel(xlabel="Forecast Horizon (days)", fontsize=16)
+        ax3.set_ylabel(ylabel="MAPE", fontsize=16)
+        ax3.set_ylim([0.0, 0.8])
         plt.show()
 
     def plot_components(self):
         pass
 
     def output_csv(self):
-        df_cv = cross_validation(self.m, initial='365 days', period='365 days', horizon='365 days')
-        df_cv.head()
-        # df_cv.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/branddemand.csv',
-        #                    encoding='utf-8', index=True)
+        self.out_table.to_csv(r'/Users/piercemclawhorn/om597/simpletire-git/simpletire/reports/prophet-' + self.name +
+                              '.csv', encoding='utf-8', index=True)
 
 
 def main():
@@ -102,7 +123,7 @@ def main():
 
 #    forecast = ProphetForecast(obj.data, obj.frequency, lookahead, obj.name)
     # hard code 365
-    forecast = ProphetForecast(obj.data, obj.frequency, 365, obj.name)
+    forecast = ProphetForecast(obj.data, obj.frequency, lookahead, obj.name)
 
     print("generating forecast...")
     forecast.generate()

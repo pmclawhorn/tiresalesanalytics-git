@@ -4,9 +4,12 @@
       <w>fivethirtyeight</w>
       <w>hankook</w>
       <w>lawhorn</w>
+      <w>mape</w>
       <w>piercemclawhorn</w>
       <w>preprocess</w>
+      <w>psql</w>
       <w>simpletire</w>
+      <w>xval</w>
     </words>
   </dictionary>
 </component>

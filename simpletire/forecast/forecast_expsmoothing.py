@@ -3,6 +3,7 @@
     This Module fits an exponential smoothing model to time series data generated in the imported module
     data_preprocess.
 """
+# TODO: This implementation is not finished
 import matplotlib.pyplot as plt
 import warnings
 import pandas as pd

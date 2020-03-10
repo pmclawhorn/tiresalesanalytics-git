@@ -122,10 +122,10 @@ class PreProcessData:
         #    pass
 
     # Normalize outliers that lie beyond 2 standard deviations
-    def normalize(self):
+    def normalize(self, window_val):
         # TODO: finish this method
         # rolling average such that obs(t) = 1/3 * (t-2 + t-1 + t)
-        self.data.iloc[2:, 0] = self.data.rolling(window=2).mean()
+        self.data.iloc[window_val:, 0] = self.data.rolling(window=window_val).mean()
         # compute standard deviations and normalize here
 
     # Displays top 10 weeks in terms of quantity for current instance
@@ -230,13 +230,13 @@ class Warehouse(PreProcessData):
 
 def preprocess_data():
     # See if User is looking for Warehouse specific data
-    want_warehouse = str(input("Are you interested in performing analysis at the warehouse level? (Y/N)"))
+    want_warehouse = str(input("Are you interested in performing analysis at the warehouse level? (Y/N) "))
 
     # Get user input for level of interest
     while True:
         try:
-            level = int(input("What level of data are you interested in? Please enter the number.\n Options are: (1)" +
-                              "Brand, (2) Subtype, (3) Line, (4) BrandWithinSubtype"))
+            level = int(input("What level of data are you interested in? Please enter the number.\n Options are: (1) " +
+                              "Brand, (2) Subtype, (3) Line, (4) BrandWithinSubtype  "))
             if level != int(1) and level != int(2) and level != int(3) and level != int(4):
                 raise ValueError
             break
@@ -244,7 +244,7 @@ def preprocess_data():
             print("Invalid Number, Please Try Again")
 
     # Get user input for data frequency, TODO: weekly works for all, monthly does not yet
-    frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly, 365 for daily)"))
+    frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly, 365 for daily) "))
     # frequency = int(52)
 
     # For ALL Warehouses Combined
@@ -254,7 +254,7 @@ def preprocess_data():
             level_two = 0
 
             # Get user input for subgroup of interest
-            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\')"))
+            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\') "))
             group_one = subgroup
             group_two = 0
             name = group_one
@@ -264,11 +264,12 @@ def preprocess_data():
             tire_data.aggregate()
             tire_data.demand_spikes()
 
-            norm = str(input("Would you like to smooth the data (3 day moving average)? (Y/N)"))
+            norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
             if norm == "Y":
-                tire_data.normalize()
+                xval = int(input("Input a value for x: "))
+                tire_data.normalize(xval)
 
-            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for: ")
             print(name)
             print(pdtabulate(tire_data.data.head(20)))
             return tire_data
@@ -278,7 +279,7 @@ def preprocess_data():
             level_two = "Brand"
 
             # Get user input for subgroup of interest
-            group_one = str(input("What Sub_Type are you interested in? (e.g. \'Trailer\')"))
+            group_one = str(input("What Sub_Type are you interested in? (e.g. \'Trailer\') "))
 
             # Show Top 20 Brands for that Subtype
             top = TopTwenty("Sub_Type", str(group_one))
@@ -290,12 +291,13 @@ def preprocess_data():
             tire_data = BrandWithinSubtype(level_one, level_two, group_one, group_two, frequency, name)
             tire_data.double_aggregate()
             tire_data.demand_spikes()
-            norm = str(input("Would you like to smooth the data (3 day moving average)? (Y/N)"))
+            norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
             if norm == "Y":
-                tire_data.normalize()
+                xval = int(input("Input a value for x: "))
+                tire_data.normalize(xval)
             tire_data.data.rename(columns={str(group_two): name})
 
-            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for: ")
             print(name)
             print(pdtabulate(tire_data.data.head(20)))
             return tire_data
@@ -307,14 +309,14 @@ def preprocess_data():
             level_two = 0
 
             # Get user input for subgroup of interest
-            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\')"))
+            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\') "))
             group_one = subgroup
             group_two = 0
 
             # Show Top 20 Warehouses for that Sub_Type
             top_warehouses = TopTwenty("Sub_Type", str(group_one))
             top_warehouses.show_warehouses()
-            warehouse = str(input("Which Warehouse are you interested in? (enter exact name)"))
+            warehouse = str(input("Which Warehouse are you interested in? (enter exact name) "))
 
             name = str(group_one) + " - " + str(warehouse)
 
@@ -322,13 +324,14 @@ def preprocess_data():
             tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency, name)
             tire_data.aggregate(warehouse)
             tire_data.demand_spikes()
-            norm = str(input("Would you like to smooth the data (3 day moving average)? (Y/N)"))
+            norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
             if norm == "Y":
-                tire_data.normalize()
+                xval = int(input("Input a value for x: "))
+                tire_data.normalize(xval)
 
             tire_data.data.rename(columns={str(group_one): name})
 
-            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for: ")
             print(name)
             print(pdtabulate(tire_data.data.head(20)))
             return tire_data
@@ -338,12 +341,12 @@ def preprocess_data():
             level_two = "Brand"
 
             # Get user input for subgroup of interest
-            group_one = str(input("What Sub_Type are you interested in? (e.g. \'Trailer\')"))
+            group_one = str(input("What Sub_Type are you interested in? (e.g. \'Trailer\') "))
 
             # Show Top 20 Warehouses for that Sub_Type, prompt for selection
             top_warehouses = TopTwenty("Sub_Type", str(group_one))
             top_warehouses.show_warehouses()
-            warehouse = str(input("Which Warehouse are you interested in? (enter exact name)"))
+            warehouse = str(input("Which Warehouse are you interested in? (enter exact name) "))
 
             # Show Top 20 Brands for that Sub_Type and Warehouse, prompt for selection
             top_brands = TopTwenty("Sub_Type", str(group_one))
@@ -355,13 +358,14 @@ def preprocess_data():
             tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency, name)
             tire_data.double_aggregate(warehouse)
             tire_data.demand_spikes()
-            norm = str(input("Would you like to smooth the data (2 period moving average)? (Y/N)"))
+            norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
             if norm == "Y":
-                tire_data.normalize()
+                xval = int(input("Input a value for x: "))
+                tire_data.normalize(xval)
 
             tire_data.data.rename(columns={str(level_two): name})
 
-            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for:")
+            print("Data Aggregation Complete. Showing First 10 Entries in Weekly Aggregate for: ")
             print(name)
             print(pdtabulate(tire_data.data.head(20)))
             return tire_data
