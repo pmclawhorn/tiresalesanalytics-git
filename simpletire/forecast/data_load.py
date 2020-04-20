@@ -12,9 +12,12 @@ pd.set_option("display.max_columns", 20)
 pd.set_option("display.max_rows", 100)
 
 # Global Static Raw Data
+raw_2020 = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin_2020.csv')
 jan26_raw = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin-01-26.csv')
+jan26_raw = jan26_raw.loc[(jan26_raw['Created'] < '2020-01-01')]
 raw_2018 = pd.read_csv(r'/Users/piercemclawhorn/om597/data/OrderItemMargin_2018.csv')
 historical_data_raw = pd.concat([jan26_raw, raw_2018], axis=0, sort=False)
+historical_data_raw = pd.concat([historical_data_raw, raw_2020], axis=0, sort=False)
 historical_data = historical_data_raw.loc[:, ['Source', 'Created', 'ProductID', 'Quantity', 'Cost', 'Unit_Cost',
                                               'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost', 'Brand', 'Sub_Type',
                                               'Line', 'Admin_Ship_Est', 'SupplierWarehouseName',

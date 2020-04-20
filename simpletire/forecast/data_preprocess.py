@@ -36,6 +36,7 @@ class PreProcessData:
         self.group_two = group_two
         self.frequency = frequency
         self.name = name
+        self.demand = True
         if self.level_one == 1:
             self.level_one = "Brand"
         elif self.level_one == 2:
@@ -45,12 +46,16 @@ class PreProcessData:
         elif self.level_one == 4:
             self.level_one = "Sub_Type"
             self.level_two = "Brand"
+        elif self.level_one == 5:
+            self.level_one = "Source"
+        elif self.level_one == 6:
+            self.level_one = "SKU"
 
     # Aggregate data to proper form
     def aggregate(self):
         # Aggregate Monthly Data
         if self.frequency == 12:
-            self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group))]
+            self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
 
             # Compute Columns for profit, include shipping cost
             self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -227,6 +232,31 @@ class Warehouse(PreProcessData):
         self.data = subtype_result_week
         return self.data
 
+        # override aggregate for when warehouse is of interest
+
+    def aggregate_profit(self, warehouse):
+        self.data = historical_data.loc[(historical_data['SupplierWarehouseName'] == str(warehouse))]
+        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+
+        # Compute Columns for profit, include shipping cost
+        self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
+
+        # Aggregate Data to Weekly
+        subtype_demand_week = self.data.loc[:, ['Created', 'Net_Profit', str(self.level_one)]]
+        subtype_demand_week['Created'] = pd.to_datetime(subtype_demand_week['Created'])
+        subtype_demand_week = subtype_demand_week.groupby(str(self.level_one)).resample('W-Mon', on='Created',
+                                                                                        label='left',
+                                                                                        closed='left') \
+            .sum().reset_index().sort_values(by='Created')  # FIXME
+
+        # Fill data where a subtype may have been ordered 0 times in a week
+        subtype_result_week = subtype_demand_week.groupby(['Created', str(self.level_one)])['Net_Profit'].sum(). \
+            reset_index().pivot(index='Created', columns=str(self.level_one), values='Net_Profit'). \
+            resample('W-Mon', label='left', closed='left').asfreq().fillna(0)
+
+        self.data = subtype_result_week
+        return self.data
+
 
 def preprocess_data():
     # See if User is looking for Warehouse specific data
@@ -235,16 +265,17 @@ def preprocess_data():
     # Get user input for level of interest
     while True:
         try:
-            level = int(input("What level of data are you interested in? Please enter the number.\n Options are: (1) " +
-                              "Brand, (2) Subtype, (3) Line, (4) BrandWithinSubtype  "))
-            if level != int(1) and level != int(2) and level != int(3) and level != int(4):
+            level = int(input("What level of data are you interested in? Please enter the number.\n Options are:\n (1) " +
+                              "Brand\n (2) Subtype\n (3) Line\n (4) BrandWithinSubtype\n (5) Source\n (6) SKU\n"))
+            if level != int(1) and level != int(2) and level != int(3) and level != int(4) and level != int(5)\
+                    and level != int(6):
                 raise ValueError
             break
         except ValueError:
             print("Invalid Number, Please Try Again")
 
     # Get user input for data frequency, TODO: weekly works for all, monthly does not yet
-    frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly, 365 for daily) "))
+    frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly, 365 for daily) \n"))
     # frequency = int(52)
 
     # For ALL Warehouses Combined
@@ -254,7 +285,8 @@ def preprocess_data():
             level_two = 0
 
             # Get user input for subgroup of interest
-            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\') "))
+            subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\'," +
+                                 "\'SimpleTireWebsite\', etc.) \n"))
             group_one = subgroup
             group_two = 0
             name = group_one
@@ -320,9 +352,16 @@ def preprocess_data():
 
             name = str(group_one) + " - " + str(warehouse)
 
-            # Instantiate PreProcessData Object
+            # Instantiate Warehouse Object
             tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency, name)
-            tire_data.aggregate(warehouse)
+
+            profitordemand = str(input("Would you like to forecast for demand or profit? (P/D) "))
+            if profitordemand == "P":
+                tire_data.aggregate_profit(warehouse)
+                tire_data.demand = False
+            else:
+                tire_data.aggregate(warehouse)
+
             tire_data.demand_spikes()
             norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
             if norm == "Y":

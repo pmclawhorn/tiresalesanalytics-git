@@ -35,11 +35,12 @@ sns.set()
 #  frequency is the number of periods in a season (e.g. 52 for a year),
 #  lookahead is the number of periods in the future you want to forecast.
 class ProphetForecast:
-    def __init__(self, time_series, frequency, lookahead, name):
+    def __init__(self, time_series, frequency, lookahead, name, demand):
         self.time_series = time_series
         self.frequency = frequency
         self.lookahead = lookahead
         self.name = name
+        self.demand = demand
         self.m = Prophet(yearly_seasonality=True)
         self.out_table = time_series  # placeholder for real forecast
 
@@ -66,7 +67,12 @@ class ProphetForecast:
             ax = fig.gca()
             ax.set_title(label="2020 Prophet Forecast - " + self.name, fontsize=24)
             ax.set_xlabel(xlabel="Month", fontsize=16)
-            ax.set_ylabel(ylabel="Tire Sales (units sold)", fontsize=16)
+
+            if self.demand == True:
+                ax.set_ylabel(ylabel="Tire Sales (units sold)", fontsize=16)
+            else:
+                ax.set_ylabel(ylabel="Net Profit (USD)", fontsize=16)
+
             ax.set_autoscale_on(b=True)
             # ax.subplots_adjust(top=0.93)
             plt.show()
@@ -123,7 +129,7 @@ def main():
 
 #    forecast = ProphetForecast(obj.data, obj.frequency, lookahead, obj.name)
     # hard code 365
-    forecast = ProphetForecast(obj.data, obj.frequency, lookahead, obj.name)
+    forecast = ProphetForecast(obj.data, obj.frequency, lookahead, obj.name, obj.demand)
 
     print("generating forecast...")
     forecast.generate()
