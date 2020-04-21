@@ -68,10 +68,12 @@ class ProphetForecast:
             ax.set_title(label="2020 Prophet Forecast - " + self.name, fontsize=24)
             ax.set_xlabel(xlabel="Month", fontsize=16)
 
-            if self.demand == True:
+            if self.demand == "demand":
                 ax.set_ylabel(ylabel="Tire Sales (units sold)", fontsize=16)
-            else:
+            elif self.demand == "profit":
                 ax.set_ylabel(ylabel="Net Profit (USD)", fontsize=16)
+            else:
+                ax.set_ylabel(ylabel="Total Revenue (USD)", fontsize=16)
 
             ax.set_autoscale_on(b=True)
             # ax.subplots_adjust(top=0.93)
@@ -94,7 +96,7 @@ class ProphetForecast:
 
         print("CROSS VALIDATION RESULTS")
         df_cv = cross_validation(self.m, initial='365.25 days', period='365.25 days', horizon='365.25 days')
-       # df_cv = cross_validation(self.m, initial='180 days', period='180 days', horizon='180 days')
+        # df_cv = cross_validation(self.m, initial='180 days', period='180 days', horizon='180 days')
         self.out_table = df_cv
         print(pdtabulate(df_cv))
 
@@ -124,8 +126,9 @@ class ProphetForecast:
 
 def main():
     obj = preprocess_data()
-    print("For your chosen data, there are " + str(obj.frequency) + " periods in a season (365 means daily data)")
-    lookahead = str(input("How may periods in the future would you like to forecast? For Prophet, 365 means one year."))
+    # print("For your chosen data, there are " + str(obj.frequency) + " periods in a season (365 means daily data)")
+    # lookahead = str(input("How may periods in the future would you like to forecast? For Prophet, 365 means one year."))
+    lookahead = str(365)
 
 #    forecast = ProphetForecast(obj.data, obj.frequency, lookahead, obj.name)
     # hard code 365

@@ -24,6 +24,25 @@ historical_data = historical_data_raw.loc[:, ['Source', 'Created', 'ProductID', 
                                               'SupplierWarehouseID']]
 historical_data = historical_data.loc[~(historical_data['Source'] == "BulkOrders")]
 
+select_source = str(input("Would you like to ONLY include data from a specified Source? (Y/N) \n" +
+                          "NOTE: If you select this option now , the later Source selection will not work. \n" +
+                          "This option exists here to select smaller subcategories within your chosen source. \n"))
+if select_source == "Y":
+    source = str(input("Which Source would you like? e.g. SimpleWebsite, Amazon \n "))
+    historical_data = historical_data.loc[historical_data['Source'] == source]
+
+# Get the Table for Supplier Regions
+supplier_regions = pd.read_csv(r'/Users/piercemclawhorn/om597/data/supplier_regions.csv')
+
+# Rename 'name' column to 'SupplierWarehouseName', convert region to int type
+supplier_regions.rename(columns={'name': 'SupplierWarehouseName'}, inplace=True)
+supplier_regions['region'] = supplier_regions['region'].fillna(0).astype(int)
+# TEST print(supplier_regions.head(20))
+
+# Add supplier region column to the rest of the data
+historical_data = pd.merge(historical_data, supplier_regions, on='SupplierWarehouseName')
+# TEST print(historical_data.head(20))
+
 
 def main():
     print(historical_data.head(20))

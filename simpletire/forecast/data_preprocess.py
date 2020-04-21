@@ -49,10 +49,10 @@ class PreProcessData:
         elif self.level_one == 5:
             self.level_one = "Source"
         elif self.level_one == 6:
-            self.level_one = "SKU"
+            self.level_one = "ProductID"
 
     # Aggregate data to proper form
-    def aggregate(self):
+    def aggregate(self, region):
         # Aggregate Monthly Data
         if self.frequency == 12:
             self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
@@ -102,6 +102,9 @@ class PreProcessData:
 
         elif self.frequency == 365:
             self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
+            # partition by region if specified
+            if region != 0:
+                self.data = self.data.loc[(self.data['region'] == region)]
 
             # Compute Columns for profit, include shipping cost
             self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -122,13 +125,59 @@ class PreProcessData:
             self.data = subtype_result_day
             return self.data
 
-        # If there is a group within group
-        #  elif self.level_two:
-        #    pass
+    def aggregate_profit(self, region):
+        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
+        # partition by region if specified
+        if region != 0:
+            self.data = self.data.loc[(self.data['region'] == region)]
+
+        # Compute Columns for profit, include shipping cost
+        self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
+
+        # Aggregate Data to Weekly
+        subtype_demand_day = self.data.loc[:, ['Created', 'Net_Profit', str(self.level_one)]]
+        subtype_demand_day['Created'] = pd.to_datetime(subtype_demand_day['Created'])
+        subtype_demand_day = subtype_demand_day.groupby(str(self.level_one)).resample('D', on='Created',
+                                                                                      label='left',
+                                                                                      closed='left') \
+            .sum().reset_index().sort_values(by='Created')
+
+        # Fill data where a subtype may have been ordered 0 times in a day
+        subtype_result_day = subtype_demand_day.groupby(['Created', str(self.level_one)])['Net_Profit'].sum(). \
+            reset_index().pivot(index='Created', columns=str(self.level_one), values='Net_Profit'). \
+            resample('D', label='left', closed='left').asfreq().fillna(0)
+
+        self.data = subtype_result_day
+        return self.data
+
+    def aggregate_revenue(self, region):
+        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
+        # partition by region if specified
+        if region != 0:
+            self.data = self.data.loc[(self.data['region'] == region)]
+
+        # Compute Columns for profit, include shipping cost
+        self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
+
+        # Aggregate Data to Weekly
+        subtype_demand_day = self.data.loc[:, ['Created', 'Ext_Sales', str(self.level_one)]]
+        subtype_demand_day['Created'] = pd.to_datetime(subtype_demand_day['Created'])
+        subtype_demand_day = subtype_demand_day.groupby(str(self.level_one)).resample('D', on='Created',
+                                                                                      label='left',
+                                                                                      closed='left') \
+            .sum().reset_index().sort_values(by='Created')
+
+        # Fill data where a subtype may have been ordered 0 times in a day
+        subtype_result_day = subtype_demand_day.groupby(['Created', str(self.level_one)])['Ext_Sales'].sum(). \
+            reset_index().pivot(index='Created', columns=str(self.level_one), values='Ext_Sales'). \
+            resample('D', label='left', closed='left').asfreq().fillna(0)
+
+        self.data = subtype_result_day
+        return self.data
 
     # Normalize outliers that lie beyond 2 standard deviations
+    # Note, this is a pre-processing function and should be used sparingly
     def normalize(self, window_val):
-        # TODO: finish this method
         # rolling average such that obs(t) = 1/3 * (t-2 + t-1 + t)
         self.data.iloc[window_val:, 0] = self.data.rolling(window=window_val).mean()
         # compute standard deviations and normalize here
@@ -144,16 +193,15 @@ class PreProcessData:
         # spike_weeks['Created'] = (spike_weeks['Created']).date
         print(pdtabulate(spike_weeks.head(10)))
 
-    def generate_report(self):
-        pass
-        # TODO: This, maybe save as a helper or create in forecasting functions
-
 
 # Subclass for when brand within subtype data is of interest
 class BrandWithinSubtype(PreProcessData):
-    def double_aggregate(self):
+    def double_aggregate(self, region):
         self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
         self.data = self.data.loc[(self.data[str(self.level_two)] == str(self.group_two))]
+        # partition by region if specified
+        if region != 0:
+            self.data = self.data.loc[(self.data['region'] == region)]
 
         # Compute Columns for profit, include shipping cost
         self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -208,7 +256,8 @@ class Warehouse(PreProcessData):
         self.data = subtype_result_week
         return self.data
 
-    # override aggregate for when warehouse is of interest
+    # Override aggregate function for when warehouse is of interest
+    # Aggregate on quantity sold
     def aggregate(self, warehouse):
         self.data = historical_data.loc[(historical_data['SupplierWarehouseName'] == str(warehouse))]
         self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
@@ -232,8 +281,7 @@ class Warehouse(PreProcessData):
         self.data = subtype_result_week
         return self.data
 
-        # override aggregate for when warehouse is of interest
-
+    # Aggregate on net profit
     def aggregate_profit(self, warehouse):
         self.data = historical_data.loc[(historical_data['SupplierWarehouseName'] == str(warehouse))]
         self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
@@ -257,10 +305,42 @@ class Warehouse(PreProcessData):
         self.data = subtype_result_week
         return self.data
 
+    # Aggregate on revenue
+    def aggregate_revenue(self, warehouse):
+        self.data = historical_data.loc[(historical_data['SupplierWarehouseName'] == str(warehouse))]
+        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
 
+        # Compute Columns for profit, include shipping cost
+        self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
+
+        # Aggregate Data to Weekly
+        subtype_demand_week = self.data.loc[:, ['Created', 'Ext_Sales', str(self.level_one)]]
+        subtype_demand_week['Created'] = pd.to_datetime(subtype_demand_week['Created'])
+        subtype_demand_week = subtype_demand_week.groupby(str(self.level_one)).resample('W-Mon', on='Created',
+                                                                                        label='left',
+                                                                                        closed='left') \
+            .sum().reset_index().sort_values(by='Created')  # FIXME
+
+        # Fill data where a subtype may have been ordered 0 times in a week
+        subtype_result_week = subtype_demand_week.groupby(['Created', str(self.level_one)])['Ext_Sales'].sum(). \
+            reset_index().pivot(index='Created', columns=str(self.level_one), values='Ext_Sales'). \
+            resample('W-Mon', label='left', closed='left').asfreq().fillna(0)
+
+        self.data = subtype_result_week
+        return self.data
+
+
+# Primary driver function
 def preprocess_data():
-    # See if User is looking for Warehouse specific data
-    want_warehouse = str(input("Are you interested in performing analysis at the warehouse level? (Y/N) "))
+
+    want_region = str(input("Do you want to partition by warehouse region? (Y/N) \n"))
+    if want_region == "Y":
+        region_number = int(input("What region are you interested in? (1-10) \n"))
+        want_warehouse = "N"
+    elif want_region == "N":
+        region_number = 0
+        # See if User is looking for Warehouse specific data
+        want_warehouse = str(input("Do you want to perform analysis at the specific warehouse level? (Y/N) \n"))
 
     # Get user input for level of interest
     while True:
@@ -274,8 +354,9 @@ def preprocess_data():
         except ValueError:
             print("Invalid Number, Please Try Again")
 
-    # Get user input for data frequency, TODO: weekly works for all, monthly does not yet
-    frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly, 365 for daily) \n"))
+    # Get user input for data frequency, TODO: set to force daily for now. Portions work for weekly and monthly
+    #frequency = int(input("How frequently do you want the data sampled? (12 for monthly, 52 for weekly, 365 for daily) \n"))
+    frequency = int(365)
     # frequency = int(52)
 
     # For ALL Warehouses Combined
@@ -284,16 +365,30 @@ def preprocess_data():
             level_one = level
             level_two = 0
 
+            # Show the Highest Revenue SKU's if SKU option is selected
+            if level == int(6):
+                top = TopTwenty(0, 0)
+                top.show_skus()
+
             # Get user input for subgroup of interest
             subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\'," +
-                                 "\'SimpleTireWebsite\', etc.) \n"))
+                                 "\'SimpleWebsite\', etc.) \n"))
             group_one = subgroup
             group_two = 0
             name = group_one
 
             # Instantiate PreProcessData Object
             tire_data = PreProcessData(level_one, level_two, group_one, group_two, frequency, name)
-            tire_data.aggregate()
+            profitordemand = str(input("Would you like to forecast for demand, revenue, or profit? (P/R/D) "))
+            if profitordemand == "P":
+                tire_data.aggregate_profit(region_number)
+                tire_data.demand = "profit"
+            elif profitordemand == "R":
+                tire_data.aggregate_revenue(region_number)
+                tire_data.demand = "revenue"
+            else:
+                tire_data.demand = "demand"
+                tire_data.aggregate(region_number)
             tire_data.demand_spikes()
 
             norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
@@ -321,7 +416,7 @@ def preprocess_data():
 
             # Instantiate BrandWithinSubtype Object
             tire_data = BrandWithinSubtype(level_one, level_two, group_one, group_two, frequency, name)
-            tire_data.double_aggregate()
+            tire_data.double_aggregate(tire_data, region_number)
             tire_data.demand_spikes()
             norm = str(input("Would you like to smooth the data (x period moving average)? (Y/N) "))
             if norm == "Y":
@@ -355,11 +450,15 @@ def preprocess_data():
             # Instantiate Warehouse Object
             tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency, name)
 
-            profitordemand = str(input("Would you like to forecast for demand or profit? (P/D) "))
+            profitordemand = str(input("Would you like to forecast for demand, revenue, or profit? (P/R/D) "))
             if profitordemand == "P":
                 tire_data.aggregate_profit(warehouse)
-                tire_data.demand = False
+                tire_data.demand = "profit"
+            elif profitordemand == "R":
+                tire_data.aggregate_revenue(warehouse)
+                tire_data.demand = "revenue"
             else:
+                tire_data.demand = "demand"
                 tire_data.aggregate(warehouse)
 
             tire_data.demand_spikes()

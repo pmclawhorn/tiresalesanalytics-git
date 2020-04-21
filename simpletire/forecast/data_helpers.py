@@ -62,6 +62,19 @@ class TopTwenty:
         top20_brands = list(brand_group.head(20)['Brand'])
         return top20_brands
 
+    def show_skus(self):
+        # LINE ANALYSIS
+        sku = historical_data[:,
+               ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost',
+                'Net_Profit', 'ProductID']]
+        sku = sku.sort_values(['Ext_Sales'], ascending=[False])
+        # Aggregate by Brand
+        sku_group = sku.groupby('ProductID').agg({'Ext_Sales': ['sum', 'mean']}).reset_index()
+        # Sort by Profit (sum)
+        sku_group = sku_group.sort_values([('Ext_Sales', 'sum')], ascending=False)
+        print("Top 20 Top Selling SKUs\n")
+        print(sku_group.head(20))
+
 
 def main():
     print("data_helpers.py loaded...")
