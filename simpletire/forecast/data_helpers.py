@@ -64,14 +64,15 @@ class TopTwenty:
 
     def show_skus(self):
         # LINE ANALYSIS
-        sku = historical_data[:,
+        print(historical_data.head(10))
+        skus = historical_data.loc[:,
                ['ProductID', 'Quantity', 'Cost', 'Unit_Cost', 'Price', 'Unit_Price', 'Ext_Sales', 'Ext_Cost',
-                'Net_Profit', 'ProductID']]
-        sku = sku.sort_values(['Ext_Sales'], ascending=[False])
+                'Net_Profit']]
+       # skus = skus.sort_values(['Ext_Sales'], ascending=[False])
         # Aggregate by Brand
-        sku_group = sku.groupby('ProductID').agg({'Ext_Sales': ['sum', 'mean']}).reset_index()
+        sku_group = skus.groupby('ProductID').agg({'Quantity': ['sum', 'mean']}).reset_index()
         # Sort by Profit (sum)
-        sku_group = sku_group.sort_values([('Ext_Sales', 'sum')], ascending=False)
+        sku_group = sku_group.sort_values([('Quantity', 'sum')], ascending=False)
         print("Top 20 Top Selling SKUs\n")
         print(sku_group.head(20))
 

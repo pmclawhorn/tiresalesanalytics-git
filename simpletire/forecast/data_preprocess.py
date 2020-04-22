@@ -52,7 +52,7 @@ class PreProcessData:
             self.level_one = "ProductID"
 
     # Aggregate data to proper form
-    def aggregate(self, region):
+    def aggregate(self, region_number):
         # Aggregate Monthly Data
         if self.frequency == 12:
             self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
@@ -101,10 +101,12 @@ class PreProcessData:
             return self.data
 
         elif self.frequency == 365:
-            self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
-            # partition by region if specified
+            region = region_number
             if region != 0:
-                self.data = self.data.loc[(self.data['region'] == region)]
+                self.data = historical_data.loc[(historical_data['region'] == region)]
+
+            self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+            # partition by region if specified
 
             # Compute Columns for profit, include shipping cost
             self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -125,11 +127,13 @@ class PreProcessData:
             self.data = subtype_result_day
             return self.data
 
-    def aggregate_profit(self, region):
-        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
-        # partition by region if specified
+    def aggregate_profit(self, region_number):
+        region = region_number
         if region != 0:
-            self.data = self.data.loc[(self.data['region'] == region)]
+            self.data = historical_data.loc[(historical_data['region'] == region)]
+
+        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+        # partition by region if specified
 
         # Compute Columns for profit, include shipping cost
         self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -150,11 +154,14 @@ class PreProcessData:
         self.data = subtype_result_day
         return self.data
 
-    def aggregate_revenue(self, region):
-        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
-        # partition by region if specified
+    def aggregate_revenue(self, region_number):
+        region = region_number
         if region != 0:
-            self.data = self.data.loc[(self.data['region'] == region)]
+            self.data = historical_data.loc[(historical_data['region'] == region)]
+
+        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+        # partition by region if specified
+
 
         # Compute Columns for profit, include shipping cost
         self.data['Net_Profit'] = ((self.data['Ext_Sales'] - self.data['Ext_Cost']) - self.data['Admin_Ship_Est'])
@@ -271,7 +278,7 @@ class Warehouse(PreProcessData):
         subtype_demand_week = subtype_demand_week.groupby(str(self.level_one)).resample('W-Mon', on='Created',
                                                                                         label='left',
                                                                                         closed='left') \
-            .sum().reset_index().sort_values(by='Created') # FIXME
+            .sum().reset_index().sort_values(by='Created') #FIXME
 
         # Fill data where a subtype may have been ordered 0 times in a week
         subtype_result_week = subtype_demand_week.groupby(['Created', str(self.level_one)])['Quantity'].sum(). \
@@ -375,7 +382,11 @@ def preprocess_data():
                                  "\'SimpleWebsite\', etc.) \n"))
             group_one = subgroup
             group_two = 0
-            name = group_one
+
+            if region_number != 0:
+                name = "Region " + str(region_number) + " - " + group_one
+            else:
+                name = group_one
 
             # Instantiate PreProcessData Object
             tire_data = PreProcessData(level_one, level_two, group_one, group_two, frequency, name)
@@ -412,7 +423,11 @@ def preprocess_data():
             top = TopTwenty("Sub_Type", str(group_one))
             top.show_brands()
             group_two = str(input("Which Brand are you interested in?"))
-            name = str(group_one) + " - " + str(group_two)
+
+            if region_number != 0:
+                name = "Region " + str(region_number) + " - " + str(group_one) + " - " + str(group_two)
+            else:
+                name = str(group_one) + " - " + str(group_two)
 
             # Instantiate BrandWithinSubtype Object
             tire_data = BrandWithinSubtype(level_one, level_two, group_one, group_two, frequency, name)
@@ -445,7 +460,11 @@ def preprocess_data():
             top_warehouses.show_warehouses()
             warehouse = str(input("Which Warehouse are you interested in? (enter exact name) "))
 
-            name = str(group_one) + " - " + str(warehouse)
+            if region_number != 0:
+                name = "Region " + str(region_number) + " - " + str(group_one) + " - " + str(warehouse)
+            else:
+                name = str(group_one) + " - " + str(warehouse)
+
 
             # Instantiate Warehouse Object
             tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency, name)
@@ -490,7 +509,11 @@ def preprocess_data():
             top_brands = TopTwenty("Sub_Type", str(group_one))
             top_brands.show_brands_in_warehouse(warehouse)
             group_two = str(input("Which Brand are you interested in?"))
-            name = str(level_two) + " - " + str(group_two) + " - " + str(warehouse)
+
+            if region_number != 0:
+                name = "Region " + str(region_number) + str(level_two) + " - " + str(group_two) + " - " + str(warehouse)
+            else:
+                name = str(level_two) + " - " + str(group_two) + " - " + str(warehouse)
 
             # Instantiate Warehouse Object
             tire_data = Warehouse(level_one, level_two, group_one, group_two, frequency, name)

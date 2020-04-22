@@ -37,10 +37,12 @@ supplier_regions = pd.read_csv(r'/Users/piercemclawhorn/om597/data/supplier_regi
 # Rename 'name' column to 'SupplierWarehouseName', convert region to int type
 supplier_regions.rename(columns={'name': 'SupplierWarehouseName'}, inplace=True)
 supplier_regions['region'] = supplier_regions['region'].fillna(0).astype(int)
+
 # TEST print(supplier_regions.head(20))
 
 # Add supplier region column to the rest of the data
 historical_data = pd.merge(historical_data, supplier_regions, on='SupplierWarehouseName')
+historical_data['ProductID'] = historical_data['ProductID'].fillna(0).astype(str)
 # TEST print(historical_data.head(20))
 
 
