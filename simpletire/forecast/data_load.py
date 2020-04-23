@@ -2,7 +2,7 @@
     Author: Pierce M. McLawhorn
     This Module loads raw data from .csv records, such it may be manipulated in data_preprocess.py.
     This type of global variable implementation is used purely for speed and memory efficiency.
-    Run this module once (ensuring that you set the correct file paths) and then run one of the *_forecast.py modules.
+    Run this module once (ensuring that you set the correct file paths) and then run one of the forecast_*.py modules.
 """
 import warnings
 import pandas as pd
@@ -38,12 +38,12 @@ supplier_regions = pd.read_csv(r'/Users/piercemclawhorn/om597/data/supplier_regi
 supplier_regions.rename(columns={'name': 'SupplierWarehouseName'}, inplace=True)
 supplier_regions['region'] = supplier_regions['region'].fillna(0).astype(int)
 
-# TEST print(supplier_regions.head(20))
-
 # Add supplier region column to the rest of the data
 historical_data = pd.merge(historical_data, supplier_regions, on='SupplierWarehouseName')
 historical_data['ProductID'] = historical_data['ProductID'].fillna(0).astype(str)
-# TEST print(historical_data.head(20))
+
+
+# orders_with_coupons = pd.read_csv(r'/Users/piercemclawhorn/om597/data/orders_with_coupons.csv')
 
 
 def main():

@@ -77,6 +77,16 @@ class TopTwenty:
         print(sku_group.head(20))
 
 
+class Coupon:
+    def __init__(self, level, group):
+        self.level = level
+        self.group = group
+
+    def top_promotions(self):
+        pass
+
+
+
 def main():
     print("data_helpers.py loaded...")
 

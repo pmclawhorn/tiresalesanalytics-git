@@ -104,8 +104,10 @@ class PreProcessData:
             region = region_number
             if region != 0:
                 self.data = historical_data.loc[(historical_data['region'] == region)]
+                self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
 
-            self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+            self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
+
             # partition by region if specified
 
             # Compute Columns for profit, include shipping cost
@@ -131,8 +133,9 @@ class PreProcessData:
         region = region_number
         if region != 0:
             self.data = historical_data.loc[(historical_data['region'] == region)]
+            self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
 
-        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
         # partition by region if specified
 
         # Compute Columns for profit, include shipping cost
@@ -158,8 +161,9 @@ class PreProcessData:
         region = region_number
         if region != 0:
             self.data = historical_data.loc[(historical_data['region'] == region)]
+            self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
 
-        self.data = self.data.loc[(self.data[str(self.level_one)] == str(self.group_one))]
+        self.data = historical_data.loc[(historical_data[str(self.level_one)] == str(self.group_one))]
         # partition by region if specified
 
 
@@ -344,7 +348,7 @@ def preprocess_data():
     if want_region == "Y":
         region_number = int(input("What region are you interested in? (1-10) \n"))
         want_warehouse = "N"
-    elif want_region == "N":
+    else:
         region_number = 0
         # See if User is looking for Warehouse specific data
         want_warehouse = str(input("Do you want to perform analysis at the specific warehouse level? (Y/N) \n"))
@@ -379,7 +383,7 @@ def preprocess_data():
 
             # Get user input for subgroup of interest
             subgroup = str(input("What subgroup at this level are you interested in? (e.g. \'Trailer\', \'Hankook\'," +
-                                 "\'SimpleWebsite\', etc.) \n"))
+                                 "\'SimpleWebsite\', etc.) "))
             group_one = subgroup
             group_two = 0
 

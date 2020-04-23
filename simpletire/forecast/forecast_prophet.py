@@ -43,9 +43,34 @@ class ProphetForecast:
         self.demand = demand
         self.m = Prophet(yearly_seasonality=True)
         self.out_table = time_series  # placeholder for real forecast
+        self.holidays = 0
 
     def generate(self):
-        # Add holidays as a component to the forecast
+
+        # Add promotions component here
+        want_holidays = str(input("Do you want to incorporate promotions into the forecast? \n" +
+                                  "NOTE: This option only works when selecting a pure subtype. (Y/N) \n"))
+
+        if want_holidays == "Y":
+                print("Adding promotions...")
+                promo_data = pd.read_csv(r'/Users/piercemclawhorn/om597/data/promos.csv')
+                promo_data = promo_data.loc[(promo_data['sub_type'] == self.name)]
+                # read the dates in as date for the given subtype
+                date_table = promo_data.groupby('begins')
+                date_list = date_table['begins'].apply(pd.Series)
+                print(date_list)
+
+                promotions = pd.DataFrame({
+                    'holiday': 'promotion',
+                    'ds': pd.to_datetime(date_list),
+                    'lower_window': 0,
+                    'upper_window': 1,
+                })
+
+                self.holidays = promotions
+                self.m = Prophet(holidays = self.holidays, yearly_seasonality=True)
+
+        # Add promotions holidays as a component to the forecast
         self.m.add_country_holidays('UnitedStates')
 
         self.time_series['ds'] = self.time_series.index
@@ -87,6 +112,24 @@ class ProphetForecast:
             # FIXME title is on bottom for some reason
             #  ax2.set_title(label="2020 Prophet Forecast - " + self.name + " - Trend Components", fontsize=14)
             plt.show()
+
+    # FIXME this currently only works for subtypes
+    def holidays(self):
+        promo_data = pd.read_csv(r'/Users/piercemclawhorn/om597/data/promos.csv')
+        promo_data = promo_data.loc[(promo_data['sub_type'] == self.name)]
+        # read the dates in as date for the given subtype
+        date_table = promo_data.groupby('begins')
+        date_list = date_table['begins'].tolist()
+
+        promotions = pd.DataFrame({
+            'holiday': 'promotion',
+            'ds': pd.to_datetime(date_list),
+            'lower_window': 0,
+            'upper_window': 1,
+        })
+
+        self.holidays = promotions
+
 
     def plot_(self):
         # Plot Forecasts
