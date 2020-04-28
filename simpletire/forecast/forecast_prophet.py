@@ -84,6 +84,7 @@ class ProphetForecast:
         self.m.fit(df=self.time_series)
         future = self.m.make_future_dataframe(periods=int(self.lookahead))
         forecast = self.m.predict(future)
+        self.out_table = forecast
 
         # Plot the Components
         plot_bool = str(input("Would you like to plot the forecast?? (Y/N)"))
@@ -140,7 +141,7 @@ class ProphetForecast:
         print("CROSS VALIDATION RESULTS")
         df_cv = cross_validation(self.m, initial='365.25 days', period='365.25 days', horizon='365.25 days')
         # df_cv = cross_validation(self.m, initial='180 days', period='180 days', horizon='180 days')
-        self.out_table = df_cv
+        # self.out_table = df_cv
         print(pdtabulate(df_cv))
 
         print("PERFORMANCE METRICS")
