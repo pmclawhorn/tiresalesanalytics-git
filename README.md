@@ -4,7 +4,7 @@
 A Python Data Analysis and Forecasting Suite. Created by Pierce McLawhorn for an online tire company as part of OM-597: Advanced Analysis in Supply Chain at The University of Alabama.
 
 ## INTRODUCTION:
-This project is essentially an interactive data manipulation and forecasting tool. Using pandas, numpy, and other data manipulation packages, a user is first prompted on how they want to partition the data, from a comprehensive table of all orders processed by SimpleTire. For the purposes of this project, the data is sourced from .csv files (totalling ~3.5 million rows), however it may be easily modified to utilize live data, by editing forecast/data_load.py. The user is able to partition the data by:
+This project is essentially an interactive data manipulation and forecasting tool. Using pandas, numpy, and other data manipulation packages, a user is first prompted on how they want to partition the data, from a comprehensive table of all orders processed by the company. For the purposes of this project, the data is sourced from .csv files (totalling ~3.5 million rows), however it may be easily modified to utilize live data, by editing forecast/data_load.py. The user is able to partition the data by:
 
  (1) Brand
  (2) Subtype
